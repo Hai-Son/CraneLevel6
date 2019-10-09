@@ -1,9 +1,11 @@
 package cranelevel6;
 
-public class King {
+B
+public class King extends Piece{
 
 	King(){
-		}
+		
+	}
 	
 	
 }
