@@ -1,13 +1,53 @@
 package cranelevel6;
 
-public class Queen extends Piece{
+import java.util.ArrayList;
+import java.util.List;
 
-	Queen(){
-		
+public class Queen extends Piece {
+	int x = 5;
+	int y = 2;
+	String coordinates = "";
+	List<Directions> legalmoves = new ArrayList<>();
+
+	public static void main(String[] args) {
+		Queen Test = new Queen(5, 2);
+		Test.getPotential();
 	}
-	
-	
-	
-	
-	
+	Queen(int xvalue, int yvalue) {
+		this.x = xvalue;
+		this.y = yvalue;
+		//Given coordinate point of queen.
+		//This assumes coordinates are from 0-7
+		legalmoves.add(Directions.N);
+		legalmoves.add(Directions.S);
+		legalmoves.add(Directions.W);
+		legalmoves.add(Directions.E);
+	}
+
+	public List<Location> getPotential() {
+		//Paths for Vertical Travel
+//		for (int i = 0; i < 8; i++) {
+//			if(i != x) {
+//				//coordinates += i + "," + y + " ";
+//			}
+//		}
+//		//Paths for Horizontal Travel
+//		for (int i = 0; i < 8; i++) {
+//			if(i != y) {
+//			//coordinates += x + "," + i + " ";
+//			}
+//		}
+		//West 
+		System.out.println(coordinates);
+		//return coordinates;
+		List<Location> moves = new ArrayList<>();
+		Location current = getLocation();
+		for(Directions d: legalmoves) {
+			Location n = current.getLocation(d);
+		}
+		return moves;
+	}
+	// recursively add another item as we go
+	//until null or smth is hit
+
 }
