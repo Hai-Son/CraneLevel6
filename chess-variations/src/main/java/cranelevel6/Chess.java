@@ -7,7 +7,7 @@ public class Chess {
 		//create and place squares
 		//create and place pieces
 		//start game
-		
+		Board board = new Board();
 	}
 	
 	public static void main(String[] args) {
