@@ -28,11 +28,6 @@ public class Board {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-	void draw (Graphics g) {
-		g.setColor(Color.BLACK);
-		g.drawRect(0, 0, 100, 100);
-	}
-	
 	public Location[][] getTiles() {
 		return tiles;
 	}
