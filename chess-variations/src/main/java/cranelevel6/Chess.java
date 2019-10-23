@@ -1,7 +1,5 @@
 package cranelevel6;
 
-
-import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,9 +21,9 @@ public class Chess implements ActionListener {
 		frame.setSize(introWidth, introHeight);
 		
 		//buttons
-		JButton multiplayer = new JButton();
-		JButton singleplayer = new JButton();
-		JButton startGame = new JButton();
+		multiplayer = new JButton();
+		singleplayer = new JButton();
+		startGame = new JButton();
 		
 		multiplayer.addActionListener(this);
 		singleplayer.addActionListener(this);
