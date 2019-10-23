@@ -10,14 +10,13 @@ public class Queen extends Piece {
 	List<Directions> legalmoves = new ArrayList<>();
 
 	public static void main(String[] args) {
-		Queen Test = new Queen(5, 2);
+		Queen Test = new Queen();
 		Test.getPotential();
 	}
-	Queen(int xvalue, int yvalue) {
-		this.x = xvalue;
-		this.y = yvalue;
-		//Given coordinate point of queen.
-		//This assumes coordinates are from 0-7
+
+	Queen() {
+		// Given coordinate point of queen.
+		// This assumes coordinates are from 0-7
 		legalmoves.add(Directions.N);
 		legalmoves.add(Directions.S);
 		legalmoves.add(Directions.W);
@@ -25,29 +24,19 @@ public class Queen extends Piece {
 	}
 
 	public List<Location> getPotential() {
-		//Paths for Vertical Travel
-//		for (int i = 0; i < 8; i++) {
-//			if(i != x) {
-//				//coordinates += i + "," + y + " ";
-//			}
-//		}
-//		//Paths for Horizontal Travel
-//		for (int i = 0; i < 8; i++) {
-//			if(i != y) {
-//			//coordinates += x + "," + i + " ";
-//			}
-//		}
-		//West 
-		System.out.println(coordinates);
-		//return coordinates;
+		// return coordinates;
 		List<Location> moves = new ArrayList<>();
-		Location current = getLocation();
-		for(Directions d: legalmoves) {
-			Location n = current.getLocation(d);
+		Location current = getLocation(); // Gets position of piece.
+		for (Directions d : legalmoves) {
+			Location n = current.getLocation(d); // Location of object
+			Location s = new Location(n.getxTile(), n.getyTile());
+			System.out.println(n);
+			// if() {
+			// moves.add(d);
+			// }
 		}
 		return moves;
 	}
 	// recursively add another item as we go
-	//until null or smth is hit
-
+	// until null or smth is hit
 }
