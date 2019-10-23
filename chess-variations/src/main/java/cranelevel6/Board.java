@@ -31,4 +31,20 @@ public class Board {
 	public Location[][] getTiles() {
 		return tiles;
 	}
+
+	public Location getLocation(Location location, Directions d) {
+		switch(d) {
+		case N:
+			return tiles[0][0];
+		case W:
+			return tiles[0][0];
+		case S:
+			return tiles[0][0];
+		case E:
+			return tiles[0][0];
+			
+		}
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

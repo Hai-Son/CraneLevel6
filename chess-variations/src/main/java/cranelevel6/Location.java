@@ -29,6 +29,7 @@ public class Location {
 	public int getyCord() {
 		return yCord;
 	}
+
 	public boolean getHasPiece() {
 		return hasPiece;
 	}
@@ -36,4 +37,18 @@ public class Location {
 	public void setHasPiece(boolean hasPiece) {
 		this.hasPiece = hasPiece;
 	}
+
+	
+	public Location getLocation(Directions d) {
+		Board board = getBoard();
+		return board.getLocation(this, d);
+	}
+
+	Board board;
+	
+	public Board getBoard() {
+		return board;
+	}
+
+
 }

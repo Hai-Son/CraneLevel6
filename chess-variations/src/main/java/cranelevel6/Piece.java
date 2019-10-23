@@ -1,6 +1,6 @@
 package cranelevel6;
 
-public abstract class Piece {
+public abstract class Piece{
 	boolean captured;
 	boolean white;
 	//add getter and setter for hasMoved
