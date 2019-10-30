@@ -8,8 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Chess implements ActionListener {
-	int introWidth = 800;
-	int introHeight = 800;
+	int introWidth = 900;
+	int introHeight = 925;
 	JButton multiplayer;
 	JButton singleplayer;
 	JButton startGame;
@@ -60,7 +60,7 @@ public class Chess implements ActionListener {
 		
 	}
 
-	@Override
+	
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == startGame){
 			//this isn't running the setup yet, not sure why

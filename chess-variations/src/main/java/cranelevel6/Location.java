@@ -11,7 +11,7 @@ public class Location {
 		xTile = x;
 		yTile = y;
 		xCord = (100 * x) + 50;
-		yCord = (-100 * x) + 750;
+		yCord = (-100 * y) + 750;
 	}
 
 	public int getxTile() {

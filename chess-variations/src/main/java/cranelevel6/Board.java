@@ -7,7 +7,7 @@ import java.awt.Graphics;
 
 public class Board {
 	private final static int WIDTH = 900;
-	private final static int HEIGHT = 900;
+	private final static int HEIGHT = 925;
 	private Location[][] tiles;
 	JFrame frame;
 	
@@ -24,8 +24,6 @@ public class Board {
 		frame.setSize(WIDTH, HEIGHT);
 		frame.setVisible(true);
 		dg.setVisible(true);
-		Graphics g = dg.getGraphics();
-		dg.draw(g);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 	}
 	
