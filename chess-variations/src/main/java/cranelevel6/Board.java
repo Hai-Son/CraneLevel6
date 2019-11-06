@@ -16,6 +16,7 @@ public class Board {
 		for (int i = 0; i < tiles.length; i++) {
 			for (int j = 0; j < tiles[i].length; j++) {
 				tiles[i][j] = new Location(i, j);
+				tiles[i][j].setBoard(this);
 			}
 		}
 		DisplayGame dg = new DisplayGame(this);
