@@ -1,42 +1,29 @@
 package cranelevel6;
 
+import java.awt.Graphics;
 import java.awt.List;
 import java.util.ArrayList;
 
 public class Castle extends Piece{
-	Location location;
+	//Location location;
 	int x; // (0,0) or (7,0)for white?
 	int y = 0;
 	
 	ArrayList<Directions> moves = new ArrayList<Directions>();
 	
-	Castle(){
+	Castle(Board b){
+		super (b);
 		moves.add(Directions.N);
 		moves.add(Directions.S);
 		moves.add(Directions.E);
 		moves.add(Directions.W);
 	}
 	
-	Castle c = new Castle();
-	
-	public void restrictions() {
-		
-		if(c.getLocation().getxTile() == 7) {
-			moves.remove(Directions.E);
-		}
-		if(c.getLocation().getxTile() == 0) {
-			moves.remove(Directions.W);
-		}
-		if(c.getLocation().getyTile() == 7) {
-			moves.remove(Directions.S);
-		}
-		if(c.getLocation().getyTile() == 0) {
-			moves.remove(Directions.N);
-		}
-		
-	}
-
 	public ArrayList<Location> getPossibleMoves(){
+	
+		if(location == null) {
+			return null;
+		}
 		ArrayList<Location> possibleMoves = new ArrayList<Location>();
 		for(Directions d: moves) {
 			Location l = location.getLocation(d);
@@ -46,8 +33,11 @@ public class Castle extends Piece{
 			}
 		}
 		
-		
 		return possibleMoves;
+	}
+	
+	void draw(Graphics g) {
+		g.drawImage(/*name goes here*//*, x, y, width, height, null*/);
 	}
 	
 	public static void main(String[] args) {
