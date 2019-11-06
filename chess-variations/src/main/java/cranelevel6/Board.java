@@ -33,18 +33,19 @@ public class Board {
 	}
 
 	public Location getLocation(Location location, Directions d) {
-		switch(d) {
-		case N:
-			return tiles[0][0];
-		case W:
-			return tiles[0][0];
-		case S:
-			return tiles[0][0];
-		case E:
-			return tiles[0][0];
-			
+		//is it a real location
+		if(location == null || d == null) {
+			return null;
 		}
-		// TODO Auto-generated method stub
-		return null;
+		//new location
+		int x = location.getxTile()+d.getX();
+		int y = location.getyTile()+d.getY();
+		
+		//is it out of bounds
+		if(x<0 || x>7 || y<0 || y>7) {
+			return null;
+		}else {
+			return tiles[x][y];
+		}
 	}
 }

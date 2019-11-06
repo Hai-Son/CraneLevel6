@@ -1,6 +1,7 @@
 package cranelevel6;
 
 public abstract class Piece{
+	Board board;
 	boolean captured;
 	boolean white;
 	//add getter and setter for hasMoved
@@ -8,9 +9,15 @@ public abstract class Piece{
 	Location location;
 	String type;
 	
+	Piece(Board board){
+		this.board = board;
+	}
 	
+	public Location getTargetLocation(Directions direction) {
+		return board.getLocation(location, direction);
+	}
 	
-	
+
 	public boolean isCaptured() {
 		return captured;
 	}
