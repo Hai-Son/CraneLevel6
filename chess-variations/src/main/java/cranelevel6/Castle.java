@@ -37,7 +37,7 @@ public class Castle extends Piece{
 	}
 	
 	void draw(Graphics g) {
-		g.drawImage(/*name goes here*//*, x, y, width, height, null*/);
+		//g.drawImage(/*name goes here*//*, x, y, width, height, null*/);
 	}
 	
 	public static void main(String[] args) {
