@@ -6,8 +6,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Board {
-	private final static int WIDTH = 900;
-	private final static int HEIGHT = 925;
+	private final static int WIDTH = 950;
+	private final static int HEIGHT = 975;
 	private Location[][] tiles;
 	JFrame frame;
 	

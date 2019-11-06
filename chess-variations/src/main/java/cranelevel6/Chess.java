@@ -8,8 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Chess implements ActionListener {
-	int introWidth = 900;
-	int introHeight = 925;
+	int introWidth = 950;
+	int introHeight = 975;
 	JButton multiplayer;
 	JButton singleplayer;
 	JButton startGame;
