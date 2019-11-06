@@ -50,5 +50,8 @@ public class Location {
 		return board;
 	}
 
+	public void setBoard(Board b) {
+		board = b;
+	}
 
 }
