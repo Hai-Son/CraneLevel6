@@ -6,5 +6,11 @@ public class King extends Piece{
 		super(board);
 	}
 	//public void move(seelcted )
+
+	@Override
+	protected String getImageFile() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

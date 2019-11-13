@@ -48,7 +48,9 @@ public class Castle extends Piece{
 
 	
 	void draw(Graphics g) {
+
 		g.drawImage(image, x, y, 60, 60, null);
+
 	}
 	
 	public static void main(String[] args) {
