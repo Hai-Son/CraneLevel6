@@ -4,13 +4,20 @@ import javax.swing.*;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Board {
 	private final static int WIDTH = 950;
 	private final static int HEIGHT = 975;
 	private Location[][] tiles;
+	private List<Piece> pieces;
 	JFrame frame;
-	
+	DisplayGame dg;
+	public DisplayGame getDg() {
+		return dg;
+	}
+
 	Board() {
 		tiles = new Location[8][8];
 		for (int i = 0; i < tiles.length; i++) {
@@ -19,7 +26,7 @@ public class Board {
 				tiles[i][j].setBoard(this);
 			}
 		}
-		DisplayGame dg = new DisplayGame(this);
+		dg = new DisplayGame(this);
 		frame = new JFrame();
 		frame.add(dg);		
 		frame.setSize(WIDTH, HEIGHT);
@@ -48,6 +55,22 @@ public class Board {
 		}else {
 			return tiles[x][y];
 		}
+	}
+
+	public void addPiece(Piece p) {
+		if(p == null) {
+			return;
+		}
+		if(pieces == null) {
+			pieces = new ArrayList<>();
+		}
+		if(!pieces.contains(p)) {
+			pieces.add(p);
+		}
+	}
+	
+	public List<Piece> getPieces() {
+		return pieces;
 	}
 
 }

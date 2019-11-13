@@ -8,14 +8,10 @@ public class TestCastleMoves2 {
 		Board b = new Board();
 		Castle c = new Castle(b);
 		c.setLocation(b.getTiles()[0][0]);
+		b.addPiece(c);
+		DisplayGame dg = b.getDg();
 		
-		ArrayList <Location> pMoves = c.getPossibleMoves();
-		if(pMoves == null) {
-			System.out.println("null moves");
+		dg.repaint();
 		}
-		for(Location l: c.getPossibleMoves()) {
-			System.out.println(l.getxTile()+", " + l.getyTile());
-		}
-	}
 	
 }

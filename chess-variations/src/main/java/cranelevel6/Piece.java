@@ -1,5 +1,6 @@
 package cranelevel6;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -58,6 +59,12 @@ public abstract class Piece{
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	public BufferedImage getImage() {
+		return image;
+	}
+
+	protected abstract void draw(Graphics2D g2);
 	
 	
 	
