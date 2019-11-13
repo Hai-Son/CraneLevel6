@@ -11,11 +11,12 @@ public class Queen extends Piece {
 	List<Directions> legalmoves = new ArrayList<Directions>();
 
 	public static void main(String[] args) {
-		Queen Test = new Queen();
+		Queen Test = new Queen(null);
 		Test.getPotential();
 	}
 
-	Queen() {
+	Queen(Board board) {
+		super(board);
 		// Given coordinate point of queen.
 		// This assumes coordinates are from 0-7
 		legalmoves.add(Directions.N);
