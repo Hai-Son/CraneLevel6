@@ -1,20 +1,18 @@
 package cranelevel6;
 
-import java.awt.Graphics;
-import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-
 
 public class Queen extends Piece {
 	int x = 5;
 	int y = 2;
 	String coordinates = "";
-	//String image;
 	List<Directions> legalmoves = new ArrayList<>();
+
+	public static void main(String[] args) {
+		Queen Test = new Queen(null);
+		Test.getPotential();
+	}
 
 	Queen(Board board) {
 		super(board);
@@ -40,30 +38,6 @@ public class Queen extends Piece {
 		}
 		return moves;
 	}
-	
-//	void draw(Graphics g) {
-//		g.drawImage(image, x, y, 60, 60, null);
-//	}
-//	
-//	public static void main(String[] args) {
-//		
-//	}
-//	
-//	@Override
-//	protected String getImageFile() {
-//		// TODO Auto-generated method stub
-//		
-//		String queenPNG = "";
-//		if(isWhite() == true) {
-//			queenPNG = "images/WhiteQueen.png";
-//		}
-//		else {
-//			queenPNG = "images/BlackQueen.png";
-//		}
-//		return queenPNG; 
-//		
-//	}
-	
 	// recursively add another item as we go
 	// until null or smth is hit
 }
