@@ -7,7 +7,7 @@ public class TestCastleMoves {
 	public static void main(String[] args) {
 		Board b = new Board();
 		Castle c = new Castle(b);
-		c.setLocation(b.getTiles()[4][4]);
+		c.setLocation(b.getTiles()[0][0]);
 		
 		ArrayList <Location> pMoves = c.getPossibleMoves();
 		if(pMoves == null) {

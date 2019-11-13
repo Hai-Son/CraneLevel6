@@ -40,4 +40,10 @@ public class Queen extends Piece {
 	}
 	// recursively add another item as we go
 	// until null or smth is hit
+
+	@Override
+	protected String getImageFile() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
