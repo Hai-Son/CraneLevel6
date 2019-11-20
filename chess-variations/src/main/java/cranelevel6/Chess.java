@@ -15,6 +15,7 @@ public class Chess implements ActionListener {
 	JButton multiplayer;
 	JButton singleplayer;
 	JButton startGame;
+	JButton help;
 
 	public void intro() {
 		System.out.println("running intro");
@@ -27,20 +28,24 @@ public class Chess implements ActionListener {
 		multiplayer = new JButton();
 		singleplayer = new JButton();
 		startGame = new JButton();
+		help = new JButton();
 
 		multiplayer.addActionListener(this);
 		singleplayer.addActionListener(this);
 		startGame.addActionListener(this);
+		help.addActionListener(this);
 
 		multiplayer.setText("Multiplayer");
 		singleplayer.setText("Singleplayer");
 		startGame.setText("Start Game");
+		help.setText("Learn to Play!");
 		//
 
 		frame.add(panel);
 		panel.add(singleplayer);
 		panel.add(multiplayer);
 		panel.add(startGame);
+		panel.add(help);
 
 		frame.setVisible(true);
 
