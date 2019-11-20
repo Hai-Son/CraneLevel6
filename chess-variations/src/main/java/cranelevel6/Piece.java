@@ -1,5 +1,11 @@
 package cranelevel6;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+
 public abstract class Piece{
 	Board board;
 	boolean captured;
@@ -8,11 +14,22 @@ public abstract class Piece{
 	boolean hasMoved;
 	Location location;
 	String type;
-	
+	BufferedImage image;
 	Piece(Board board){
 		this.board = board;
+		
+
+		
+		try {
+		File image2 = new File(getImageFile());
+		 image = ImageIO.read(image2);
+		}catch(Exception e){
+			
+		}
 	}
 	
+	protected abstract String getImageFile();
+
 	public Location getTargetLocation(Directions direction) {
 		return board.getLocation(location, direction);
 	}
@@ -42,6 +59,12 @@ public abstract class Piece{
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	public BufferedImage getImage() {
+		return image;
+	}
+
+	protected abstract void draw(Graphics2D g2);
 	
 	
 	
