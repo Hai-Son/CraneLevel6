@@ -51,6 +51,11 @@ public class Chess implements ActionListener {
 
 	}
 
+	public void learningChess() {
+		System.out.println("Running Instructions");
+		LearnScreen learn = new LearnScreen();
+	}
+
 	public void setup() {
 		System.out.println("running setup");
 		// create and place squares
@@ -68,6 +73,9 @@ public class Chess implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == startGame) {
 			setup();
+		}
+		if (e.getSource() == help) {
+			learningChess();
 		}
 	}
 }

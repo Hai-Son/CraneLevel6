@@ -1,16 +1,13 @@
 package cranelevel6;
 
-import javax.swing.*;
-
-import java.awt.Color;
-import java.awt.Graphics;
+import javax.swing.JFrame;
 
 public class Board {
 	private final static int WIDTH = 950;
 	private final static int HEIGHT = 975;
 	private Location[][] tiles;
 	JFrame frame;
-	
+
 	Board() {
 		tiles = new Location[8][8];
 		for (int i = 0; i < tiles.length; i++) {
@@ -21,31 +18,30 @@ public class Board {
 		}
 		DisplayGame dg = new DisplayGame(this);
 		frame = new JFrame();
-		frame.add(dg);		
+		frame.add(dg);
 		frame.setSize(WIDTH, HEIGHT);
 		frame.setVisible(true);
 		dg.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	
+
 	public Location[][] getTiles() {
 		return tiles;
 	}
 
-
 	public Location getLocation(Location location, Directions d) {
-		//is it a real location
-		if(location == null || d == null) {
+		// is it a real location
+		if (location == null || d == null) {
 			return null;
 		}
-		//new location
-		int x = location.getxTile()+d.getX();
-		int y = location.getyTile()+d.getY();
-		
-		//is it out of bounds
-		if(x<0 || x>7 || y<0 || y>7) {
+		// new location
+		int x = location.getxTile() + d.getX();
+		int y = location.getyTile() + d.getY();
+
+		// is it out of bounds
+		if (x < 0 || x > 7 || y < 0 || y > 7) {
 			return null;
-		}else {
+		} else {
 			return tiles[x][y];
 		}
 	}
