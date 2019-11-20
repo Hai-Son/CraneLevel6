@@ -1,6 +1,6 @@
 package cranelevel6;
 
-public class TestCastleMoves2 {
+public class TestCastleDisplay {
 
 	public static void main(String[] args) {
 		Board b = new Board();

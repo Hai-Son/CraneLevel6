@@ -1,6 +1,5 @@
 package cranelevel6;
 
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
@@ -35,12 +34,6 @@ public class Castle extends Piece {
 		}
 
 		return possibleMoves;
-	}
-
-	void draw(Graphics g) {
-
-		g.drawImage(getImage(), location.getxCord(), location.getyCord(), 60, 60, null);
-
 	}
 
 	@Override
