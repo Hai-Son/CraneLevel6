@@ -23,19 +23,29 @@ public class Queen extends Piece {
 		legalmoves.add(Directions.S);
 		legalmoves.add(Directions.W);
 		legalmoves.add(Directions.E);
+		legalmoves.add(Directions.NE);
+		legalmoves.add(Directions.SE);
+		legalmoves.add(Directions.SW);
+		legalmoves.add(Directions.NW);
 	}
 
 	public List<Location> getPotential() {
+		
+		if(location==null) {
+			return null;
+		}
 		// return coordinates;
 		List<Location> moves = new ArrayList<>();
 		Location current = getLocation(); // Gets position of piece.
 		for (Directions d : legalmoves) {
 			Location n = current.getLocation(d); // Location of object
-			Location s = new Location(n.getxTile(), n.getyTile());
+		//	Location s = new Location(n.getxTile(), n.getyTile());
 			System.out.println(n);
-			// if() {
-			// moves.add(d);
-			// }
+			while(n != null) {
+				moves.add(n);
+				n = n.getLocation(d);
+			}
+	
 		}
 		return moves;
 	}
