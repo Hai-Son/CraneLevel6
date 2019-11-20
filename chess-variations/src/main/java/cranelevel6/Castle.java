@@ -53,10 +53,7 @@ public class Castle extends Piece{
 		g.drawImage(getImage(), x, y, 60, 60, null);
 
 	}
-	
-	public static void main(String[] args) {
-		
-	}
+
 
 	@Override
 	protected String getImageFile() {
