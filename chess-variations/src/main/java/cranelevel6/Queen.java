@@ -1,5 +1,6 @@
 package cranelevel6;
 
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,4 +41,16 @@ public class Queen extends Piece {
 	}
 	// recursively add another item as we go
 	// until null or smth is hit
+
+	@Override
+	protected String getImageFile() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void draw(Graphics2D g2) {
+		// TODO Auto-generated method stub
+		
+	}
 }
