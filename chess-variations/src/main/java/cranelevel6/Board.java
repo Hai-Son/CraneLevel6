@@ -59,13 +59,13 @@ public class Board {
 
 		King kingW = new King(this);
 		kingW.setWhite(true);
-		kingW.setLocation(this.getTiles()[3][0]);
+		kingW.setLocation(this.getTiles()[4][0]);
 		kingW.refreshImage();
 		this.addPiece(kingW);
 
 		Queen queenW = new Queen(this);
 		queenW.setWhite(true);
-		queenW.setLocation(this.getTiles()[4][0]);
+		queenW.setLocation(this.getTiles()[3][0]);
 		queenW.refreshImage();
 		this.addPiece(queenW);
 
@@ -118,13 +118,13 @@ public class Board {
 
 		King kingB = new King(this);
 		kingB.setWhite(false);
-		kingB.setLocation(this.getTiles()[3][7]);
+		kingB.setLocation(this.getTiles()[4][7]);
 		kingB.refreshImage();
 		this.addPiece(kingB);
 
 		Queen queenB = new Queen(this);
 		queenB.setWhite(false);
-		queenB.setLocation(this.getTiles()[4][7]);
+		queenB.setLocation(this.getTiles()[3][7]);
 		queenB.refreshImage();
 		this.addPiece(queenB);
 
