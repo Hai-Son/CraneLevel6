@@ -1,13 +1,43 @@
 package cranelevel6;
 
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 
 public class King extends Piece {
+	int x;
+	int y;
 
-	King(Board board) {
-		super(board);
+	ArrayList<Directions> moves = new ArrayList<Directions>();
+
+	King(Board b) {
+		super(b);
+		moves.add(Directions.N);
+		moves.add(Directions.S);
+		moves.add(Directions.E);
+		moves.add(Directions.W);
+		moves.add(Directions.NE);
+		moves.add(Directions.NW);
+		moves.add(Directions.SE);
+		moves.add(Directions.SW);
+
 	}
-	// public void move(seelcted )
+
+	public ArrayList<Location> getPossibleMoves() {
+
+		if (location == null) {
+			return null;
+		}
+		ArrayList<Location> possibleMoves = new ArrayList<Location>();
+		for (Directions d : moves) {
+			Location l = location.getLocation(d);
+			if (l != null) {
+				possibleMoves.add(l);
+				l = l.getLocation(d);
+			}
+		}
+
+		return possibleMoves;
+	}
 
 	@Override
 	protected String getImageFile() {
