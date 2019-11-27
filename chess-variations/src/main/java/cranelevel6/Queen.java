@@ -12,7 +12,7 @@ public class Queen extends Piece {
 
 	public static void main(String[] args) {
 		Queen Test = new Queen(null);
-		Test.getPotential();
+		Test.getPossibleMoves();
 	}
 
 	Queen(Board board) {
@@ -29,23 +29,20 @@ public class Queen extends Piece {
 		legalmoves.add(Directions.NW);
 	}
 
-	public List<Location> getPotential() {
-		
-		if(location==null) {
-			return null;
-		}
+	public List<Location> getPossibleMoves() {
+
 		// return coordinates;
 		List<Location> moves = new ArrayList<>();
 		Location current = getLocation(); // Gets position of piece.
 		for (Directions d : legalmoves) {
 			Location n = current.getLocation(d); // Location of object
-		//	Location s = new Location(n.getxTile(), n.getyTile());
+			// Location s = new Location(n.getxTile(), n.getyTile());
 			System.out.println(n);
-			while(n != null) {
+			while (n != null) {
 				moves.add(n);
 				n = n.getLocation(d);
 			}
-	
+
 		}
 		return moves;
 	}
