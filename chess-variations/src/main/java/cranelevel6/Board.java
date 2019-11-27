@@ -1,12 +1,21 @@
 package cranelevel6;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JFrame;
 
 public class Board {
 	private final static int WIDTH = 950;
 	private final static int HEIGHT = 975;
 	private Location[][] tiles;
+	private List<Piece> pieces;
 	JFrame frame;
+	DisplayGame dg;
+
+	public DisplayGame getDg() {
+		return dg;
+	}
 
 	Board() {
 		tiles = new Location[8][8];
@@ -17,12 +26,58 @@ public class Board {
 			}
 		}
 		DisplayGame dg = new DisplayGame(this);
+		dg = new DisplayGame(this);
 		frame = new JFrame();
 		frame.add(dg);
 		frame.setSize(WIDTH, HEIGHT);
 		frame.setVisible(true);
 		dg.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	// type, B/W, L/R
+	public void boardSetup() {
+		// creation of pieces
+		Castle rookWL = new Castle(this);
+		rookWL.setWhite(true);
+
+		Knight knightWL = new Knight(this);
+
+		Bishop bishopWL = new Bishop(this);
+
+		King kingW = new King(this);
+
+		Queen queenW = new Queen(this);
+
+		Castle rookWR = new Castle(this);
+
+		Knight knightWR = new Knight(this);
+
+		Bishop bishopWR = new Bishop(this);
+
+		ArrayList<Pawn> WhitePawns = new ArrayList<Pawn>();
+		for (int i = 0; i < 8; i++) {
+			Pawn pawn = new Pawn(this);
+			WhitePawns.add(pawn);
+		}
+
+		Castle rookBL = new Castle(this);
+		Knight knightBL = new Knight(this);
+		Bishop bishopBL = new Bishop(this);
+		King kingB = new King(this);
+		Queen queenB = new Queen(this);
+		Castle rookBR = new Castle(this);
+		Knight knightBR = new Knight(this);
+		Bishop bishopBR = new Bishop(this);
+
+		ArrayList<Pawn> BlackPawns = new ArrayList<Pawn>();
+		for (int i = 0; i < 8; i++) {
+			Pawn pawn = new Pawn(this);
+			BlackPawns.add(pawn);
+		}
+
+		// starting piece locations
+
 	}
 
 	public Location[][] getTiles() {
@@ -44,6 +99,22 @@ public class Board {
 		} else {
 			return tiles[x][y];
 		}
+	}
+
+	public void addPiece(Piece p) {
+		if (p == null) {
+			return;
+		}
+		if (pieces == null) {
+			pieces = new ArrayList<>();
+		}
+		if (!pieces.contains(p)) {
+			pieces.add(p);
+		}
+	}
+
+	public List<Piece> getPieces() {
+		return pieces;
 	}
 
 }

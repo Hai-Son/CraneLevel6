@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.List;
 
 import javax.swing.JPanel;
 
@@ -52,5 +53,12 @@ public class DisplayGame extends JPanel {
 		for (int i = 0; i < chars.length; i++) {
 			g2.drawString(chars[i], tiles[i][0].getxCord() + 40, 915);
 		}
+		List<Piece> pieces = board.getPieces();
+		if (pieces != null) {
+			for (Piece p : pieces) {
+				p.draw(g2);
+			}
+		}
 	}
+
 }

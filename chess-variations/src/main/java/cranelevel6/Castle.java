@@ -1,6 +1,6 @@
 package cranelevel6;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 public class Castle extends Piece {
@@ -16,6 +16,7 @@ public class Castle extends Piece {
 		moves.add(Directions.S);
 		moves.add(Directions.E);
 		moves.add(Directions.W);
+
 	}
 
 	public ArrayList<Location> getPossibleMoves() {
@@ -36,12 +37,24 @@ public class Castle extends Piece {
 		return possibleMoves;
 	}
 
-	void draw(Graphics g) {
-		// g.drawImage(/*name goes here*//*, x, y, width, height, null*/);
+	@Override
+	protected String getImageFile() {
+		// TODO Auto-generated method stub
+
+		String castlePNG = "";
+		if (isWhite() == true) {
+			castlePNG = "images/WhiteCastle.png";
+		} else {
+			castlePNG = "images/BlackCastle.png";
+		}
+		return castlePNG;
+
 	}
 
-	public static void main(String[] args) {
-
+	@Override
+	protected void draw(Graphics2D g2) {
+		// TODO Auto-generated method stub
+		g2.drawImage(getImage(), location.getxCord(), location.getyCord(), 100, 100, null);
 	}
 
 }
