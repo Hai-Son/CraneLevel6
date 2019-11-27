@@ -70,26 +70,29 @@ public class DisplayGame extends JPanel implements MouseListener {
 				p.draw(g2);
 			}
 		}
-		System.out.print("repainted");
+		System.out.println("repainted");
 		if (showMoves) {
 			g2.setColor(selected);
+			g2.setStroke(new BasicStroke(5));
 			for (Location l : pMoves) {
-
-				g2.setStroke(new BasicStroke(10));
-				g2.drawRect(50, 50, 100, 100);
+				g2.drawRect(l.getxCord(), l.getyCord(), 100, 100);
 			}
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		for(int i = 0; i < tiles.length; i++) {
-			for(int j = 0; j < tiles[i].length; i++) {
+		for (int i = 0; i < tiles.length; i++) {
+			for (int j = 0; j < tiles[i].length; j++) {
 				selectedLocation = tiles[0][0];
 			}
 		}
-		pMoves = board.getPieces()
+		pMoves = board.getPieces().get(3).getPossibleMoves();
+		for (Location l : pMoves) {
+			System.out.println(l.getxTile() + ", " + l.getyTile());
+		}
 		showMoves = true;
 		repaint();
 	}

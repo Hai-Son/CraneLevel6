@@ -3,6 +3,7 @@ package cranelevel6;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -32,6 +33,8 @@ public abstract class Piece {
 	}
 
 	protected abstract String getImageFile();
+
+	abstract List getPossibleMoves();
 
 	public Location getTargetLocation(Directions direction) {
 		return board.getLocation(location, direction);

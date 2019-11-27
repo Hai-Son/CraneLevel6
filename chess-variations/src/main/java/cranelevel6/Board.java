@@ -9,7 +9,7 @@ public class Board {
 	private final static int WIDTH = 950;
 	private final static int HEIGHT = 975;
 	private Location[][] tiles;
-	private List<Piece> pieces;
+	private List<Piece> pieces = new ArrayList<>();
 	JFrame frame;
 	DisplayGame dg;
 
@@ -43,9 +43,6 @@ public class Board {
 		rookWL.setWhite(true);
 		rookWL.setLocation(this.getTiles()[0][0]);
 		rookWL.refreshImage();
-		// test
-		pieces.add(rookWL);
-		//
 		this.addPiece(rookWL);
 
 		Knight knightWL = new Knight(this);
