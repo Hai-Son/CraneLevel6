@@ -43,6 +43,9 @@ public class Board {
 		rookWL.setWhite(true);
 		rookWL.setLocation(this.getTiles()[0][0]);
 		rookWL.refreshImage();
+		// test
+		pieces.add(rookWL);
+		//
 		this.addPiece(rookWL);
 
 		Knight knightWL = new Knight(this);
