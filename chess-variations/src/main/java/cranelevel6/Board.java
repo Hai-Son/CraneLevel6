@@ -196,5 +196,4 @@ public class Board {
 	public List<Piece> getPieces() {
 		return pieces;
 	}
-
 }

@@ -11,15 +11,16 @@ public class Chess implements ActionListener {
 
 	int introWidth = 950;
 	int introHeight = 975;
-
+	JFrame frame;
+	JPanel panel;
 	JButton multiplayer;
 	JButton singleplayer;
 	JButton startGame;
 
 	public void intro() {
 		System.out.println("running intro");
-		JFrame frame = new JFrame();
-		JPanel panel = new JPanel();
+		frame = new JFrame();
+		panel = new JPanel();
 		frame.setSize(introWidth, introHeight);
 
 		// buttons
@@ -51,6 +52,7 @@ public class Chess implements ActionListener {
 		// create and place squares
 		// create and place pieces
 		// start game
+		frame.setVisible(false);
 		Board board = new Board();
 	}
 
