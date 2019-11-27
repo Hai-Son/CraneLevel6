@@ -1,79 +1,59 @@
 package cranelevel6;
 
-import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.List;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
-
-public class Castle extends Piece{
-	//Location location;
+public class Castle extends Piece {
+	// Location location;
 	int x; // (0,0) or (7,0)for white?
 	int y = 0;
 
-	
-	
 	ArrayList<Directions> moves = new ArrayList<Directions>();
-	
-	Castle(Board b){
-		super (b);
+
+	Castle(Board b) {
+		super(b);
 		moves.add(Directions.N);
 		moves.add(Directions.S);
 		moves.add(Directions.E);
 		moves.add(Directions.W);
-		
-		
+
 	}
-	
-	public ArrayList<Location> getPossibleMoves(){
-	
-		if(location == null) {
+
+	public ArrayList<Location> getPossibleMoves() {
+
+		if (location == null) {
 			return null;
 		}
 		ArrayList<Location> possibleMoves = new ArrayList<Location>();
-		for(Directions d: moves) {
+		for (Directions d : moves) {
 			Location l = location.getLocation(d);
-			while(l != null) {
+			while (l != null) {
 				possibleMoves.add(l);
 				l = l.getLocation(d);
 			}
 		}
-		
+
 		return possibleMoves;
 	}
-
-
-	
-	void draw(Graphics g) {
-
-		g.drawImage(getImage(), x, y, 60, 60, null);
-
-	}
-
 
 	@Override
 	protected String getImageFile() {
 		// TODO Auto-generated method stub
-		
+
 		String castlePNG = "";
-		if(isWhite() == true) {
+		if (isWhite() == true) {
 			castlePNG = "images/WhiteCastle.png";
-		}
-		else {
+		} else {
 			castlePNG = "images/BlackCastle.png";
 		}
-		return castlePNG; 
-		
+		return castlePNG;
+
 	}
 
 	@Override
 	protected void draw(Graphics2D g2) {
 		// TODO Auto-generated method stub
-		g2.drawImage(getImage(), x, y, 60, 60, null);
+		g2.drawImage(getImage(), location.getxCord(), location.getyCord(), 100, 100, null);
 	}
-	
+
 }

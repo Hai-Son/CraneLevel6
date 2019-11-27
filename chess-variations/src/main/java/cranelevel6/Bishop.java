@@ -2,24 +2,23 @@ package cranelevel6;
 
 import java.awt.Graphics2D;
 
-public class King extends Piece {
+public class Bishop extends Piece {
 
-	King(Board board) {
+	Bishop(Board board) {
 		super(board);
 	}
-	// public void move(seelcted )
 
 	@Override
 	protected String getImageFile() {
 		// TODO Auto-generated method stub
 
-		String kingPNG = "";
+		String bishopPNG = "";
 		if (isWhite() == true) {
-			kingPNG = "images/WhiteKing.png";
+			bishopPNG = "images/WhiteBishop.png";
 		} else {
-			kingPNG = "images/BlackKing.png";
+			bishopPNG = "images/BlackBishop.png";
 		}
-		return kingPNG;
+		return bishopPNG;
 
 	}
 
@@ -28,5 +27,4 @@ public class King extends Piece {
 		// TODO Auto-generated method stub
 		g2.drawImage(getImage(), location.getxCord(), location.getyCord(), 100, 100, null);
 	}
-
 }
