@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
@@ -14,6 +15,8 @@ import javax.swing.JPanel;
 public class DisplayGame extends JPanel implements MouseListener {
 	Board board;
 	Location[][] tiles;
+	int rectLength = 100;
+	int rectHeight = 100;
 
 	DisplayGame(Board board) {
 		this.board = board;
@@ -42,7 +45,7 @@ public class DisplayGame extends JPanel implements MouseListener {
 		for (int i = 0; i < tiles.length; i++) {
 			for (int j = 0; j < tiles[i].length; j++) {
 				if ((tiles[i][j].getxTile() + tiles[i][j].getyTile()) % 2 == 0) {
-					g2.fillRect(tiles[i][j].getxCord(), tiles[i][j].getyCord(), 100, 100);
+					g2.fillRect(tiles[i][j].getxCord(), tiles[i][j].getyCord(), rectLength, rectHeight);
 				}
 			}
 		}
@@ -80,20 +83,46 @@ public class DisplayGame extends JPanel implements MouseListener {
 		}
 	}
 
+	private Location getLocation(MouseEvent e) {
+		Point p = e.getLocationOnScreen();
+		return getLocation(p.getX(), p.getY());
+	}
+
+	// takes X and Y values, returns location
+	private Location getLocation(double x, double y) {
+		for (int i = 0; i < tiles.length; i++) {
+			for (int j = 0; j < tiles[i].length; j++) {
+				Location l = tiles[i][j];
+				if (l.getxCord() < x && l.getxCord() + rectLength > x) {
+					if (l.getyCord() < y && l.getyCord() + rectHeight > y) {
+						return l;
+					}
+				}
+
+			}
+		}
+		return null;
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		for (int i = 0; i < tiles.length; i++) {
-			for (int j = 0; j < tiles[i].length; j++) {
-				selectedLocation = tiles[0][0];
+		Location thisSquare = getLocation(e);
+		if (thisSquare == null) {
+			System.out.println("out of bounds");
+			return;
+		} else {
+			System.out.println(thisSquare.getxTile() + "," + thisSquare.getyTile());
+		}
+
+		for (Piece p : thisSquare.getBoard().getPieces()) {
+			if (thisSquare == p.getLocation()) {
+				pMoves = p.getPossibleMoves();
+				selectedLocation = thisSquare;
+				showMoves = true;
+				break;
 			}
 		}
-		pMoves = board.getPieces().get(3).getPossibleMoves();
-		for (Location l : pMoves) {
-			System.out.println(l.getxTile() + ", " + l.getyTile());
-		}
-		showMoves = true;
 		repaint();
 	}
 
