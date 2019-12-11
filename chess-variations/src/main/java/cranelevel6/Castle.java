@@ -30,6 +30,7 @@ public class Castle extends Piece {
 			while (l != null) {
 				possibleMoves.add(l);
 				l = l.getLocation(d);
+				// System.out.println(n);
 			}
 		}
 

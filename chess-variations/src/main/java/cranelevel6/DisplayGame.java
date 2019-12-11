@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 
 public class DisplayGame extends JPanel implements MouseListener {
 	Board board;
+
 	Location[][] tiles;
 	int rectLength = 100;
 	int rectHeight = 100;
@@ -24,6 +25,7 @@ public class DisplayGame extends JPanel implements MouseListener {
 		this.addMouseListener(this);
 		repaint();
 	}
+
 
 	Color light = new Color(254, 206, 157);
 	Color dark = new Color(150, 75, 0);
@@ -36,7 +38,6 @@ public class DisplayGame extends JPanel implements MouseListener {
 	public void paintComponent(Graphics g) {
 		super.paintComponents(g);
 		Graphics2D g2 = (Graphics2D) g;
-
 		Location[][] tiles = board.getTiles();
 		g2.setColor(dark);
 		g2.fillRect(0, 0, 950, 975);
@@ -133,6 +134,7 @@ public class DisplayGame extends JPanel implements MouseListener {
 		}
 		repaint();
 	}
+
 
 	@Override
 	public void mousePressed(MouseEvent e) {

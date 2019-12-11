@@ -1,5 +1,6 @@
 package cranelevel6;
 
+<<<<<<< HEAD
 import java.util.List;
 
 public class TestPawnMoves {
@@ -23,3 +24,23 @@ public class TestPawnMoves {
 	}
 
 }
+=======
+public class TestPawnMoves {
+
+	public static void main(String[] args) {
+		Board b = new Board();
+		Pawn p = new Pawn(b);
+		p.setWhite(true);
+		p.setLocation(b.getTiles()[4][6]);
+
+//		ArrayList<Location> pMoves = p.getPotential();
+//		if (pMoves == null) {
+//			System.out.println("null moves");
+//		}
+//		for (Location l : p.getPotential()) {
+//			System.out.println(l.getxTile() + ", " + l.getyTile());
+//		}
+	}
+
+}
+>>>>>>> refs/remotes/origin/master
