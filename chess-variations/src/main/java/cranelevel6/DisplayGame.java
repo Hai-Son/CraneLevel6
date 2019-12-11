@@ -27,7 +27,8 @@ public class DisplayGame extends JPanel implements MouseListener {
 
 	Color light = new Color(254, 206, 157);
 	Color dark = new Color(150, 75, 0);
-	Color selected = new Color(0, 215, 0);
+	Color possible = new Color(0, 215, 0);
+	Color selected = new Color(30, 145, 255);
 	boolean showMoves = false;
 	Location selectedLocation;
 	List<Location> pMoves;
@@ -75,8 +76,8 @@ public class DisplayGame extends JPanel implements MouseListener {
 		}
 		System.out.println("repainted");
 		if (showMoves) {
-			g2.setColor(selected);
 			g2.setStroke(new BasicStroke(5));
+			g2.setColor(possible);
 			if (pMoves != null) {
 				for (Location l : pMoves) {
 					g2.drawRect(l.getxCord(), l.getyCord(), rectLength, rectHeight);
@@ -84,6 +85,8 @@ public class DisplayGame extends JPanel implements MouseListener {
 			} else {
 				System.out.println("no possible moves");
 			}
+			g2.setColor(selected);
+			g2.drawRect(selectedLocation.getxCord(), selectedLocation.getyCord(), rectLength, rectHeight);
 			showMoves = false;
 		}
 	}
