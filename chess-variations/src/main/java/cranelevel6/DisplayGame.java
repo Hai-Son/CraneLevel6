@@ -77,8 +77,12 @@ public class DisplayGame extends JPanel implements MouseListener {
 		if (showMoves) {
 			g2.setColor(selected);
 			g2.setStroke(new BasicStroke(5));
-			for (Location l : pMoves) {
-				g2.drawRect(l.getxCord(), l.getyCord(), rectLength, rectHeight);
+			if (pMoves != null) {
+				for (Location l : pMoves) {
+					g2.drawRect(l.getxCord(), l.getyCord(), rectLength, rectHeight);
+				}
+			} else {
+				System.out.println("no possible moves");
 			}
 			showMoves = false;
 		}
