@@ -13,8 +13,10 @@ public class LearnScreen {
 	Font fancyFont = new Font("Times New Roman", Font.BOLD, 34);
 	Font regularFont = new Font("Times New Roman", Font.PLAIN, 16);
 	JLabel pieces = new JLabel();
+	JLabel specialMoves = new JLabel();
+	JLabel basicPlay = new JLabel();
 	JLabel titleLine = new JLabel();
-	int xFrame = 600;
+	int xFrame = 1000;
 	int yFrame = 800;
 
 	LearnScreen() {
@@ -28,8 +30,10 @@ public class LearnScreen {
 	public void setup() {
 		frame.setVisible(true);
 		frame.setSize(xFrame, yFrame);
+		panel.add(basicPlay);
 		frame.add(panel);
 		panel.add(pieces);
+		panel.add(specialMoves);
 		panel.add(titleLine);
 		// panel.setBackground(Color.green);
 	}
@@ -43,7 +47,9 @@ public class LearnScreen {
 	}
 
 	public void pieceFunctions() {
-		System.out.println("hi");
+		basicPlay.setFont(regularFont);
+		basicPlay.setText("<html> Pieces in the Game:");
+		basicPlay.setBounds(500, 50, 200, 100);
 		pieces.setFont(regularFont);
 		pieces.setText("<html> Pieces in the Game:<br>"
 				+ "<br>King: This is the most important piece in the game and must be protected at all costs. "
@@ -59,8 +65,9 @@ public class LearnScreen {
 				+ "A pawn may move two spaces on its first move and can be promoted to another piece if it reaches the end of the board. "
 				+ "Additionally, the pawn has a special move called 'En Passant' "
 				+ "This allows pawns to capture an opponent's pawn that has taken two steps forward by moving as if that pawn had only moved one step.<br> </html>");
-		pieces.setBounds(10, 90, 500, 600);
+		pieces.setBounds(10, 20, 450, 800);
 		pieces.setVisible(true);
+		basicPlay.setVisible(true);
 	}
 
 }
