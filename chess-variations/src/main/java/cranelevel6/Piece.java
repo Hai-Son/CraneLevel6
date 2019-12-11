@@ -34,7 +34,7 @@ public abstract class Piece {
 
 	protected abstract String getImageFile();
 
-	abstract List getPossibleMoves();
+	abstract List<Location> getPossibleMoves();
 
 	public Location getTargetLocation(Directions direction) {
 		return board.getLocation(location, direction);

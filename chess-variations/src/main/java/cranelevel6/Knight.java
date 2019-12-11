@@ -20,27 +20,6 @@ public class Knight extends Piece {
 		moves.add(Directions.WWS);
 	}
 
-	public ArrayList<Location> possibleMoves() {
-
-		if (location == null) {
-			return null;
-		}
-		ArrayList<Location> possibleMoves = new ArrayList<Location>();
-		for (Directions d : moves) {
-
-			Location l = location.getLocation(d);
-			if (l == null) {
-
-			} else {
-				possibleMoves.add(l);
-				l = l.getLocation(d);
-			}
-
-		}
-
-		return possibleMoves;
-	}
-
 	@Override
 	protected String getImageFile() {
 		// TODO Auto-generated method stub
@@ -62,8 +41,20 @@ public class Knight extends Piece {
 	}
 
 	@Override
-	List getPossibleMoves() {
-		// TODO Auto-generated method stub
-		return null;
+	List<Location> getPossibleMoves() {
+		if (location == null) {
+			return null;
+		}
+		ArrayList<Location> possibleMoves = new ArrayList<Location>();
+		for (Directions d : moves) {
+			Location l = location.getLocation(d);
+			if (l != null) {
+				possibleMoves.add(l);
+				l = l.getLocation(d);
+			}
+		}
+
+		return possibleMoves;
+
 	}
 }

@@ -29,8 +29,14 @@ public class Bishop extends Piece {
 
 	}
 
-	public ArrayList<Location> possibleMoves() {
+	@Override
+	protected void draw(Graphics2D g2) {
+		// TODO Auto-generated method stub
+		g2.drawImage(getImage(), location.getxCord(), location.getyCord(), 100, 100, null);
+	}
 
+	@Override
+	List<Location> getPossibleMoves() {
 		if (location == null) {
 			return null;
 		}
@@ -44,18 +50,5 @@ public class Bishop extends Piece {
 		}
 
 		return possibleMoves;
-
-	}
-
-	@Override
-	protected void draw(Graphics2D g2) {
-		// TODO Auto-generated method stub
-		g2.drawImage(getImage(), location.getxCord(), location.getyCord(), 100, 100, null);
-	}
-
-	@Override
-	List getPossibleMoves() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
