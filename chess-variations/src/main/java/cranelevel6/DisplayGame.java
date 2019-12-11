@@ -27,7 +27,8 @@ public class DisplayGame extends JPanel implements MouseListener {
 
 	Color light = new Color(254, 206, 157);
 	Color dark = new Color(150, 75, 0);
-	Color selected = new Color(0, 215, 0);
+	Color possible = new Color(0, 215, 0);
+	Color selected = new Color(30, 145, 255);
 	boolean showMoves = false;
 	Location selectedLocation;
 	List<Location> pMoves;
@@ -75,15 +76,18 @@ public class DisplayGame extends JPanel implements MouseListener {
 		}
 		System.out.println("repainted");
 		if (showMoves) {
-			g2.setColor(selected);
 			g2.setStroke(new BasicStroke(5));
+			g2.setColor(possible);
 			if (pMoves != null) {
 				for (Location l : pMoves) {
-					g2.drawRect(l.getxCord(), l.getyCord(), 100, 100);
+					g2.drawRect(l.getxCord(), l.getyCord(), rectLength, rectHeight);
 				}
 			} else {
 				System.out.println("no possible moves");
 			}
+			g2.setColor(selected);
+			g2.drawRect(selectedLocation.getxCord(), selectedLocation.getyCord(), rectLength, rectHeight);
+			showMoves = false;
 		}
 	}
 
@@ -98,7 +102,7 @@ public class DisplayGame extends JPanel implements MouseListener {
 			for (int j = 0; j < tiles[i].length; j++) {
 				Location l = tiles[i][j];
 				if (l.getxCord() < x && l.getxCord() + rectLength > x) {
-					if (l.getyCord() < y && l.getyCord() + rectHeight > y) {
+					if (l.getyCord() + 50 < y && l.getyCord() + 50 + rectHeight > y) {
 						return l;
 					}
 				}
