@@ -16,7 +16,7 @@ public class TestBishopMoves {
 		if (pMoves == null) {
 			System.out.println("null moves");
 		}
-		for (Location l : bishop.possibleMoves()) {
+		for (Location l : pMoves) {
 			System.out.println(l.getxTile() + ", " + l.getyTile());
 		}
 

@@ -30,7 +30,7 @@ public class Pawn extends Piece {
 	}
 
 	@Override
-	List getPossibleMoves() {
+	List<Location> getPossibleMoves() {
 		// TODO Auto-generated method stub
 		return null;
 	}
