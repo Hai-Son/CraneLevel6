@@ -78,8 +78,9 @@ public class DisplayGame extends JPanel implements MouseListener {
 			g2.setColor(selected);
 			g2.setStroke(new BasicStroke(5));
 			for (Location l : pMoves) {
-				g2.drawRect(l.getxCord(), l.getyCord(), 100, 100);
+				g2.drawRect(l.getxCord(), l.getyCord(), rectLength, rectHeight);
 			}
+			showMoves = false;
 		}
 	}
 
@@ -94,7 +95,7 @@ public class DisplayGame extends JPanel implements MouseListener {
 			for (int j = 0; j < tiles[i].length; j++) {
 				Location l = tiles[i][j];
 				if (l.getxCord() < x && l.getxCord() + rectLength > x) {
-					if (l.getyCord() < y && l.getyCord() + rectHeight > y) {
+					if (l.getyCord() + 50 < y && l.getyCord() + 50 + rectHeight > y) {
 						return l;
 					}
 				}
