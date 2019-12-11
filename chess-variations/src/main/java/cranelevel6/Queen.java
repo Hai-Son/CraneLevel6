@@ -10,6 +10,12 @@ public class Queen extends Piece {
 	String coordinates = "";
 	List<Directions> legalmoves = new ArrayList<>();
 
+
+	public static void main(String[] args) {
+		Queen Test = new Queen(null);
+		Test.getPossibleMoves();
+	}
+
 	Queen(Board board) {
 		super(board);
 		// Given coordinate point of queen.
@@ -18,19 +24,26 @@ public class Queen extends Piece {
 		legalmoves.add(Directions.S);
 		legalmoves.add(Directions.W);
 		legalmoves.add(Directions.E);
+		legalmoves.add(Directions.NE);
+		legalmoves.add(Directions.SE);
+		legalmoves.add(Directions.SW);
+		legalmoves.add(Directions.NW);
 	}
 
-	public List<Location> getPotential() {
+	public List<Location> getPossibleMoves() {
+
 		// return coordinates;
 		List<Location> moves = new ArrayList<>();
 		Location current = getLocation(); // Gets position of piece.
 		for (Directions d : legalmoves) {
 			Location n = current.getLocation(d); // Location of object
-			Location s = new Location(n.getxTile(), n.getyTile());
+			// Location s = new Location(n.getxTile(), n.getyTile());
 			System.out.println(n);
-			// if() {
-			// moves.add(d);
-			// }
+			while (n != null) {
+				moves.add(n);
+				n = n.getLocation(d);
+			}
+
 		}
 		return moves;
 	}

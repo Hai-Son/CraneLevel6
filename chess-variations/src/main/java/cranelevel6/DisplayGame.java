@@ -5,23 +5,38 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.List;
 
 import javax.swing.JPanel;
 
-public class DisplayGame extends JPanel {
+public class DisplayGame extends JPanel implements MouseListener {
 	Board board;
+
+	Location[][] tiles;
+	int rectLength = 100;
+	int rectHeight = 100;
 
 	DisplayGame(Board board) {
 		this.board = board;
+		this.tiles = board.getTiles();
+		this.addMouseListener(this);
 		repaint();
 	}
+
+
+	Color light = new Color(254, 206, 157);
+	Color dark = new Color(150, 75, 0);
+	Color selected = new Color(0, 215, 0);
+	boolean showMoves = false;
+	Location selectedLocation;
+	List<Location> pMoves;
 
 	public void paintComponent(Graphics g) {
 		super.paintComponents(g);
 		Graphics2D g2 = (Graphics2D) g;
-		Color light = new Color(254, 206, 157);
-		Color dark = new Color(150, 75, 0);
 		Location[][] tiles = board.getTiles();
 		g2.setColor(dark);
 		g2.fillRect(0, 0, 950, 975);
@@ -31,7 +46,7 @@ public class DisplayGame extends JPanel {
 		for (int i = 0; i < tiles.length; i++) {
 			for (int j = 0; j < tiles[i].length; j++) {
 				if ((tiles[i][j].getxTile() + tiles[i][j].getyTile()) % 2 == 0) {
-					g2.fillRect(tiles[i][j].getxCord(), tiles[i][j].getyCord(), 100, 100);
+					g2.fillRect(tiles[i][j].getxCord(), tiles[i][j].getyCord(), rectLength, rectHeight);
 				}
 			}
 		}
@@ -59,6 +74,81 @@ public class DisplayGame extends JPanel {
 				p.draw(g2);
 			}
 		}
+		System.out.println("repainted");
+		if (showMoves) {
+			g2.setColor(selected);
+			g2.setStroke(new BasicStroke(5));
+			for (Location l : pMoves) {
+				g2.drawRect(l.getxCord(), l.getyCord(), 100, 100);
+			}
+		}
 	}
 
+	private Location getLocation(MouseEvent e) {
+		Point p = e.getLocationOnScreen();
+		return getLocation(p.getX(), p.getY());
+	}
+
+	// takes X and Y values, returns location
+	private Location getLocation(double x, double y) {
+		for (int i = 0; i < tiles.length; i++) {
+			for (int j = 0; j < tiles[i].length; j++) {
+				Location l = tiles[i][j];
+				if (l.getxCord() < x && l.getxCord() + rectLength > x) {
+					if (l.getyCord() < y && l.getyCord() + rectHeight > y) {
+						return l;
+					}
+				}
+
+			}
+		}
+		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		Location thisSquare = getLocation(e);
+		if (thisSquare == null) {
+			System.out.println("out of bounds");
+			return;
+		} else {
+			System.out.println(thisSquare.getxTile() + "," + thisSquare.getyTile());
+		}
+
+		for (Piece p : thisSquare.getBoard().getPieces()) {
+			if (thisSquare == p.getLocation()) {
+				pMoves = p.getPossibleMoves();
+				selectedLocation = thisSquare;
+				showMoves = true;
+				break;
+			}
+		}
+		repaint();
+	}
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
 }

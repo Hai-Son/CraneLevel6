@@ -9,7 +9,7 @@ public class Board {
 	private final static int WIDTH = 950;
 	private final static int HEIGHT = 975;
 	private Location[][] tiles;
-	private List<Piece> pieces;
+	private List<Piece> pieces = new ArrayList<>();
 	JFrame frame;
 	DisplayGame dg;
 
@@ -196,5 +196,4 @@ public class Board {
 	public List<Piece> getPieces() {
 		return pieces;
 	}
-
 }
