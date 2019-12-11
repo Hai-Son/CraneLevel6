@@ -12,11 +12,11 @@ public class TestKnightMoves {
 		DisplayGame dg = b.getDg();
 
 		// dg.repaint();
-		List<Location> pMoves = k.possibleMoves();
+		List<Location> pMoves = k.getPossibleMoves();
 		if (pMoves == null) {
 			System.out.println("null moves");
 		}
-		for (Location l : k.possibleMoves()) {
+		for (Location l : pMoves) {
 			System.out.println(l.getxTile() + ", " + l.getyTile());
 		}
 

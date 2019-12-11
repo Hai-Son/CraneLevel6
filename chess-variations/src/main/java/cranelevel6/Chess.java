@@ -1,5 +1,7 @@
 package cranelevel6;
 
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,39 +15,36 @@ public class Chess implements ActionListener {
 	int introHeight = 975;
 	JFrame frame;
 	JPanel panel;
-	JButton multiplayer;
 	JButton singleplayer;
-	JButton startGame;
+	JButton multiplayer;
 	JButton help;
 
 	public void intro() {
 		System.out.println("running intro");
-		frame = new JFrame();
-		panel = new JPanel();
+		frame = new JFrame("Game Menu");
+		panel = new JPanel(new GridLayout(1, 3));
 		frame.setSize(introWidth, introHeight);
 
 		// buttons
-
-		multiplayer = new JButton();
+		Font f = new Font("Times New Roman", 50, 50);
 		singleplayer = new JButton();
-		startGame = new JButton();
-		help = new JButton();
-
-		multiplayer.addActionListener(this);
 		singleplayer.addActionListener(this);
-		startGame.addActionListener(this);
-		help.addActionListener(this);
-
-		multiplayer.setText("Multiplayer");
+		singleplayer.setFont(f);
 		singleplayer.setText("Singleplayer");
-		startGame.setText("Start Game");
+		multiplayer = new JButton();
+		multiplayer.addActionListener(this);
+		multiplayer.setFont(f);
+		multiplayer.setText("Multiplayer");
+		help = new JButton();
+		help.addActionListener(this);
+		help.setFont(f);
 		help.setText("Learn to Play!");
+
 		//
 
 		frame.add(panel);
 		panel.add(singleplayer);
 		panel.add(multiplayer);
-		panel.add(startGame);
 		panel.add(help);
 
 		frame.setVisible(true);
@@ -73,7 +72,7 @@ public class Chess implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == startGame) {
+		if (e.getSource() == singleplayer) {
 			setup();
 		}
 		if (e.getSource() == help) {
