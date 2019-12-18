@@ -61,8 +61,8 @@ public class Chess implements ActionListener {
 		// create and place squares
 		// create and place pieces
 		// start game
-		frame.setVisible(false);
 		Board board = new Board();
+		frame.setVisible(false);
 	}
 
 	public static void main(String[] args) {
