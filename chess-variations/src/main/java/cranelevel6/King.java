@@ -20,6 +20,7 @@ public class King extends Piece {
 		moves.add(Directions.SE);
 		moves.add(Directions.SW);
 
+		moves.add(Directions.WW);
 	}
 
 	public ArrayList<Location> getPossibleMoves() {
