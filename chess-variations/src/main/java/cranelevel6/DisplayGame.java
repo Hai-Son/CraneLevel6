@@ -6,26 +6,41 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class DisplayGame extends JPanel implements MouseListener {
+public class DisplayGame extends JPanel implements MouseListener, ActionListener {
 	Board board;
-
+	Chess c;
 	Location[][] tiles;
 	int rectLength = 100;
 	int rectHeight = 100;
+	JButton back;
 
-	DisplayGame(Board board) {
+	DisplayGame(Board board, Chess c) {
 		this.board = board;
 		this.tiles = board.getTiles();
+		this.c = c;
 		this.addMouseListener(this);
+
+		this.setLayout(null);
+		Font f = new Font("Times New Roman", 30, 30);
+		back = new JButton();
+		back.addActionListener(this);
+		back.setFont(f);
+		back.setText("Back");
+		back.setSize(75, 50);
+		back.setLocation(0, 0);
+		this.add(back);
+
 		repaint();
 	}
-
 
 	Color light = new Color(254, 206, 157);
 	Color dark = new Color(150, 75, 0);
@@ -77,17 +92,18 @@ public class DisplayGame extends JPanel implements MouseListener {
 		}
 		System.out.println("repainted");
 		if (showMoves) {
-			g2.setStroke(new BasicStroke(5));
+			g2.setStroke(new BasicStroke(4));
 			g2.setColor(possible);
 			if (pMoves != null) {
 				for (Location l : pMoves) {
-					g2.drawRect(l.getxCord(), l.getyCord(), rectLength, rectHeight);
+					g2.drawRect(l.getxCord() + 2, l.getyCord() + 2, rectLength - 4, rectHeight - 4);
 				}
 			} else {
 				System.out.println("no possible moves");
 			}
 			g2.setColor(selected);
-			g2.drawRect(selectedLocation.getxCord(), selectedLocation.getyCord(), rectLength, rectHeight);
+			g2.drawRect(selectedLocation.getxCord() + 2, selectedLocation.getyCord() + 2, rectLength - 4,
+					rectHeight - 4);
 			showMoves = false;
 		}
 	}
@@ -135,7 +151,6 @@ public class DisplayGame extends JPanel implements MouseListener {
 		repaint();
 	}
 
-
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -158,5 +173,14 @@ public class DisplayGame extends JPanel implements MouseListener {
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getSource().equals(back)) {
+			c.backPressed();
+			board.backPressed();
+		}
 	}
 }

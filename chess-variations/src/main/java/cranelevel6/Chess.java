@@ -18,11 +18,14 @@ public class Chess implements ActionListener {
 	JButton singleplayer;
 	JButton multiplayer;
 	JButton help;
+	JButton quit;
+	Chess c;
 
 	public void intro() {
+		c = this;
 		System.out.println("running intro");
 		frame = new JFrame("Game Menu");
-		panel = new JPanel(new GridLayout(1, 3));
+		panel = new JPanel(new GridLayout(2, 2));
 		frame.setSize(introWidth, introHeight);
 
 		// buttons
@@ -38,7 +41,11 @@ public class Chess implements ActionListener {
 		help = new JButton();
 		help.addActionListener(this);
 		help.setFont(f);
-		help.setText("Learn to Play!");
+		help.setText("Learn to Play");
+		quit = new JButton();
+		quit.addActionListener(this);
+		quit.setFont(f);
+		quit.setText("Quit Game");
 
 		//
 
@@ -46,6 +53,7 @@ public class Chess implements ActionListener {
 		panel.add(singleplayer);
 		panel.add(multiplayer);
 		panel.add(help);
+		panel.add(quit);
 
 		frame.setVisible(true);
 
@@ -61,7 +69,7 @@ public class Chess implements ActionListener {
 		// create and place squares
 		// create and place pieces
 		// start game
-		Board board = new Board();
+		Board board = new Board(c);
 		frame.setVisible(false);
 	}
 
@@ -71,12 +79,19 @@ public class Chess implements ActionListener {
 
 	}
 
+	public void backPressed() {
+		frame.setVisible(true);
+	}
+
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == singleplayer) {
 			setup();
 		}
 		if (e.getSource() == help) {
 			learningChess();
+		}
+		if (e.getSource() == quit) {
+			System.exit(0);
 		}
 	}
 }

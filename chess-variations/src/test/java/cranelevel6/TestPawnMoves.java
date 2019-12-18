@@ -3,7 +3,7 @@ package cranelevel6;
 public class TestPawnMoves {
 
 	public static void main(String[] args) {
-		Board b = new Board();
+		Board b = new Board(new Chess());
 		Pawn p = new Pawn(b);
 		p.setWhite(true);
 		p.setLocation(b.getTiles()[4][6]);

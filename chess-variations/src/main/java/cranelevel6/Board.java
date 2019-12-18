@@ -17,7 +17,7 @@ public class Board {
 		return dg;
 	}
 
-	Board() {
+	Board(Chess c) {
 		tiles = new Location[8][8];
 		for (int i = 0; i < tiles.length; i++) {
 			for (int j = 0; j < tiles[i].length; j++) {
@@ -25,8 +25,7 @@ public class Board {
 				tiles[i][j].setBoard(this);
 			}
 		}
-		DisplayGame dg = new DisplayGame(this);
-		dg = new DisplayGame(this);
+		dg = new DisplayGame(this, c);
 		frame = new JFrame();
 		frame.add(dg);
 		frame.setSize(WIDTH, HEIGHT);
@@ -195,5 +194,9 @@ public class Board {
 
 	public List<Piece> getPieces() {
 		return pieces;
+	}
+
+	public void backPressed() {
+		frame.setVisible(false);
 	}
 }
