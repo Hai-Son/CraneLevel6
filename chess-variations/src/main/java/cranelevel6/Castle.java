@@ -17,6 +17,8 @@ public class Castle extends Piece {
 		moves.add(Directions.E);
 		moves.add(Directions.W);
 
+		moves.add(Directions.EEE);
+
 	}
 
 	public ArrayList<Location> getPossibleMoves() {
