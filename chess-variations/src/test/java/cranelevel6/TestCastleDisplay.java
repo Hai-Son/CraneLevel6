@@ -3,7 +3,7 @@ package cranelevel6;
 public class TestCastleDisplay {
 
 	public static void main(String[] args) {
-		Board b = new Board();
+		Board b = new Board(new Chess());
 		Castle c = new Castle(b);
 		c.setWhite(true);
 		c.setLocation(b.getTiles()[0][0]);

@@ -17,6 +17,8 @@ public class Castle extends Piece {
 		moves.add(Directions.E);
 		moves.add(Directions.W);
 
+		moves.add(Directions.EEE);
+
 	}
 
 	public ArrayList<Location> getPossibleMoves() {
@@ -27,10 +29,10 @@ public class Castle extends Piece {
 		ArrayList<Location> possibleMoves = new ArrayList<Location>();
 		for (Directions d : moves) {
 			Location l = location.getLocation(d);
-			while (l != null) {
+			while (l != null && l.getHasPiece() == false) {
 				possibleMoves.add(l);
 				l = l.getLocation(d);
-				// System.out.println(n);
+				System.out.println(l.getHasPiece() + "");
 			}
 		}
 
