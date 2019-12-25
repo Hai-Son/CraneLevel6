@@ -48,7 +48,7 @@ public class Knight extends Piece {
 		ArrayList<Location> possibleMoves = new ArrayList<Location>();
 		for (Directions d : moves) {
 			Location l = location.getLocation(d);
-			if (l != null && l.getHasPiece() == false) {
+			if (l != null) {
 				possibleMoves.add(l);
 				l = l.getLocation(d);
 			}
