@@ -27,7 +27,6 @@ public class Chess implements ActionListener {
 		frame = new JFrame("Game Menu");
 		panel = new JPanel(new GridLayout(2, 2));
 		frame.setSize(introWidth, introHeight);
-
 		// buttons
 		Font f = new Font("Times New Roman", 50, 50);
 		singleplayer = new JButton();
@@ -46,15 +45,11 @@ public class Chess implements ActionListener {
 		quit.addActionListener(this);
 		quit.setFont(f);
 		quit.setText("Quit Game");
-
-		//
-
 		frame.add(panel);
 		panel.add(singleplayer);
 		panel.add(multiplayer);
 		panel.add(help);
 		panel.add(quit);
-
 		frame.setVisible(true);
 
 	}
