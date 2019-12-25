@@ -15,10 +15,7 @@ public class Pawn extends Piece {
 		moves.add(Directions.NN);
 		moves.add(Directions.NE);
 		moves.add(Directions.NW);
-		moves.add(Directions.S);
 		moves.add(Directions.SS);
-		moves.add(Directions.SE);
-		moves.add(Directions.SW);
 	}
 
 	public ArrayList<Location> getPossibleMoves() {
