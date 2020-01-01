@@ -43,6 +43,7 @@ public class LearnScreen {
 		panel.add(pieces);
 		panel.add(specialMoves);
 		panel.add(titleLine);
+
 		panel.add(images);
 		panel.add(kingImg);
 		panel.add(queenImg);
@@ -64,7 +65,9 @@ public class LearnScreen {
 
 	public void pieceFunctions() {
 		basicPlay.setFont(regularFont);
+
 		basicPlay.setText("<html> General rules: <br>" // was "Pieces in the Game"
+
 				+ "<br>All pieces, with the exceptions of Knights and the Castle and King during castling, can only move over vacant spaces."
 				+ "The player who is in control of the white pieces makes the first move. <br>"
 				+ "<br> Chess game endings: <br>" + "Winning: A player wins when they checkmate their opponent's king. "
