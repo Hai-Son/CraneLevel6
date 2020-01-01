@@ -16,12 +16,26 @@ public class Pawn extends Piece {
 		moves.add(Directions.NE);
 		moves.add(Directions.NW);
 		moves.add(Directions.SS);
+		moves.add(Directions.S);
+		moves.add(Directions.SW);
+		moves.add(Directions.SE);
 	}
 
 	public ArrayList<Location> getPossibleMoves() {
 
 		if (location == null) {
 			return null;
+		}
+		if (isWhite() == true) {
+			moves.remove(Directions.S);
+			moves.remove(Directions.SS);
+			moves.remove(Directions.SW);
+			moves.remove(Directions.SE);
+		} else {
+			moves.remove(Directions.N);
+			moves.remove(Directions.NE);
+			moves.remove(Directions.NW);
+			moves.remove(Directions.NN);
 		}
 		ArrayList<Location> possibleMoves = new ArrayList<Location>();
 		for (Directions d : moves) {
