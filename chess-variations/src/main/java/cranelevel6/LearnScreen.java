@@ -51,7 +51,7 @@ public class LearnScreen {
 		panel.add(bishopImg);
 		panel.add(castleImg);
 		panel.add(pawnImg);
-		// panel.setBackground(Color.green);
+		panel.setBackground(Color.green);
 	}
 
 	public void title() {
