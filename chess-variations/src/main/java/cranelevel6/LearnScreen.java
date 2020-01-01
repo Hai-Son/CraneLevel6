@@ -3,6 +3,7 @@ package cranelevel6;
 import java.awt.Color;
 import java.awt.Font;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,6 +17,13 @@ public class LearnScreen {
 	JLabel specialMoves = new JLabel();
 	JLabel basicPlay = new JLabel();
 	JLabel titleLine = new JLabel();
+	JLabel images = new JLabel();
+	JLabel kingImg = new JLabel();
+	JLabel queenImg = new JLabel();
+	JLabel knightImg = new JLabel();
+	JLabel bishopImg = new JLabel();
+	JLabel castleImg = new JLabel();
+	JLabel pawnImg = new JLabel();
 	int xFrame = 1000;
 	int yFrame = 800;
 
@@ -35,6 +43,13 @@ public class LearnScreen {
 		panel.add(pieces);
 		panel.add(specialMoves);
 		panel.add(titleLine);
+		panel.add(images);
+		panel.add(kingImg);
+		panel.add(queenImg);
+		panel.add(knightImg);
+		panel.add(bishopImg);
+		panel.add(castleImg);
+		panel.add(pawnImg);
 		// panel.setBackground(Color.green);
 	}
 
@@ -49,14 +64,39 @@ public class LearnScreen {
 
 	public void pieceFunctions() {
 		basicPlay.setFont(regularFont);
-		basicPlay.setText("<html> General rules <br>" // was "Pieces in the Game"
+		basicPlay.setText("<html> General rules: <br>" // was "Pieces in the Game"
 				+ "<br>All pieces, with the exceptions of Knights and the Castle and King during castling, can only move over vacant spaces."
 				+ "The player who is in control of the white pieces makes the first move. <br>"
 				+ "<br> Chess game endings: <br>" + "Winning: A player wins when they checkmate their opponent's king. "
 				+ "Putting a king in 'check' means that a piece is putting the opponent's king in danger of capture on the next move. "
-				+ "A 'checkmate' is when a king is in check and cannot move out of danger, block the piece putting it in check with its own piece, or capture the threatening piece. <br> "
-				+ "<br> Stalemate: when all of the spaces around a king are threatened and it cannot move but there are no other pieces that have the ability to move.");
-		basicPlay.setBounds(500, 50, 350, 500);
+				+ "A 'checkmate' is when a king is in check and cannot move out of danger, block the piece putting it in check, or capture the threatening piece. <br> "
+				+ "<br> Stalemate: when all of the spaces around a king are threatened and it cannot move but there are no other pieces that have the ability to move. <br>"
+				+ "<br> Draw: when no pawns have moved in the last 75 moves and no captures have occurred. <br>"
+				+ "<br> ");
+		basicPlay.setBounds(600, 50, 350, 600);
+
+		images.setFont(regularFont);
+		images.setText("<html> Piece images: <br>" + "" + "" + "" + "");
+		images.setBounds(470, 20, 150, 220);
+
+		kingImg.setIcon(new ImageIcon("images/WhiteKing.png"));
+		kingImg.setBounds(470, 50, 150, 350);
+
+		queenImg.setIcon(new ImageIcon("images/WhiteQueen.png"));
+		queenImg.setBounds(470, 50, 150, 612);
+
+		knightImg.setIcon(new ImageIcon("images/WhiteKnight.png"));
+		knightImg.setBounds(470, 50, 150, 753);
+
+		bishopImg.setIcon(new ImageIcon("images/WhiteBishop.png"));
+		bishopImg.setBounds(470, 50, 150, 868);
+
+		castleImg.setIcon(new ImageIcon("images/WhiteCastle.png"));
+		castleImg.setBounds(470, 50, 150, 985);
+
+		pawnImg.setIcon(new ImageIcon("images/WhitePawn.png"));
+		pawnImg.setBounds(470, 50, 150, 1200);
+
 		pieces.setFont(regularFont);
 		pieces.setText("<html> Pieces in the Game:<br>"
 				+ "<br>King: This is the most important piece in the game and must be protected at all costs. "
