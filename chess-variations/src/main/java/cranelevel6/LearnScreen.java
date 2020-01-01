@@ -70,13 +70,12 @@ public class LearnScreen {
 				+ "<br> Chess game endings: <br>" + "Winning: A player wins when they checkmate their opponent's king. "
 				+ "Putting a king in 'check' means that a piece is putting the opponent's king in danger of capture on the next move. "
 				+ "A 'checkmate' is when a king is in check and cannot move out of danger, block the piece putting it in check, or capture the threatening piece. <br> "
-				+ "<br> Stalemate: when all of the spaces around a king are threatened and it cannot move but there are no other pieces that have the ability to move. <br>"
-				+ "<br> Draw: when no pawns have moved in the last 75 moves and no captures have occurred. <br>"
-				+ "<br> ");
+				+ "<br> Draw: when no pawns have moved in the last 75 moves and no captures have occurred or when a stalemate occurs. <br>"
+				+ "<br> Stalemate: when all of the spaces around a king are threatened and it cannot move but there are no other pieces that have the ability to move. <br>");
 		basicPlay.setBounds(600, 50, 350, 600);
 
 		images.setFont(regularFont);
-		images.setText("<html> Piece images: <br>" + "" + "" + "" + "");
+		images.setText("<html> Piece images: <br>");
 		images.setBounds(470, 20, 150, 220);
 
 		kingImg.setIcon(new ImageIcon("images/WhiteKing.png"));
