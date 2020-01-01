@@ -28,17 +28,18 @@ public class DisplayGame extends JPanel implements MouseListener, ActionListener
 		this.tiles = board.getTiles();
 		this.c = c;
 		this.addMouseListener(this);
-
 		this.setLayout(null);
 		Font f = new Font("Times New Roman", 30, 30);
 		back = new JButton();
 		back.addActionListener(this);
 		back.setFont(f);
 		back.setText("Back");
-		back.setSize(75, 50);
+		back.setBackground(Color.CYAN);
+		back.setOpaque(true);
+		back.setBorderPainted(false);
+		back.setSize(105, 45);
 		back.setLocation(0, 0);
 		this.add(back);
-
 		repaint();
 	}
 

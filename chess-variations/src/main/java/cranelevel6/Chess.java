@@ -1,5 +1,6 @@
 package cranelevel6;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -23,28 +24,36 @@ public class Chess implements ActionListener {
 
 	public void intro() {
 		c = this;
-		System.out.println("running intro");
 		frame = new JFrame("Game Menu");
 		panel = new JPanel(new GridLayout(2, 2));
+		panel.setBackground(Color.BLACK);
 		frame.setSize(introWidth, introHeight);
 		// buttons
 		Font f = new Font("Times New Roman", 50, 50);
-		singleplayer = new JButton();
+		singleplayer = new JButton("Singleplayer");
 		singleplayer.addActionListener(this);
 		singleplayer.setFont(f);
-		singleplayer.setText("Singleplayer");
-		multiplayer = new JButton();
+		singleplayer.setBackground(Color.YELLOW);
+		singleplayer.setOpaque(true);
+		singleplayer.setBorderPainted(false);
+		multiplayer = new JButton("Multiplayer");
 		multiplayer.addActionListener(this);
 		multiplayer.setFont(f);
-		multiplayer.setText("Multiplayer");
-		help = new JButton();
+		multiplayer.setBackground(Color.MAGENTA);
+		multiplayer.setOpaque(true);
+		multiplayer.setBorderPainted(false);
+		help = new JButton("Learn to Play");
 		help.addActionListener(this);
 		help.setFont(f);
-		help.setText("Learn to Play");
-		quit = new JButton();
+		help.setBackground(Color.GREEN);
+		help.setOpaque(true);
+		help.setBorderPainted(false);
+		quit = new JButton("Quit Game");
 		quit.addActionListener(this);
 		quit.setFont(f);
-		quit.setText("Quit Game");
+		quit.setBackground(Color.RED);
+		quit.setOpaque(true);
+		quit.setBorderPainted(false);
 		frame.add(panel);
 		panel.add(singleplayer);
 		panel.add(multiplayer);
@@ -80,6 +89,9 @@ public class Chess implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == singleplayer) {
+			setup();
+		}
+		if (e.getSource() == multiplayer) {
 			setup();
 		}
 		if (e.getSource() == help) {
