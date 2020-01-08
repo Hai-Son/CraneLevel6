@@ -180,6 +180,10 @@ public class Board {
 		}
 	}
 
+	public void movePieceTo(Piece piece, Location location) {
+		piece.setLocation(location);
+	}
+
 	public void addPiece(Piece p) {
 		if (p == null) {
 			return;
