@@ -196,6 +196,22 @@ public class Board {
 		return pieces;
 	}
 
+	public Piece getPiece(Location l) {
+		if (l == null) {
+			return null;
+		}
+		List<Piece> allPieces = getPieces();
+		if (allPieces == null || allPieces.isEmpty()) {
+			return null;
+		}
+		for (Piece p : allPieces) {
+			if (p.getLocation() == l) {
+				return p;
+			}
+		}
+		return null;
+	}
+
 	public void backPressed() {
 		frame.setVisible(false);
 	}
