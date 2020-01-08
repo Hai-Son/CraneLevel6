@@ -160,8 +160,8 @@ public class DisplayGame extends JPanel implements MouseListener, ActionListener
 
 			for (Piece p : thisSquare.getBoard().getPieces()) {
 				if (thisSquare == p.getLocation()) {
-					// pMoves = p.getPossibleMoves();
-					pMoves = p.getLegalMoves();
+					pMoves = p.getPossibleMoves();
+					// pMoves = p.getLegalMoves();
 					selectedLocation = thisSquare;
 					showMoves = true;
 					break;
