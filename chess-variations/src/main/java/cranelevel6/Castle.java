@@ -9,6 +9,8 @@ public class Castle extends Piece {
 	int y = 0;
 
 	ArrayList<Directions> moves = new ArrayList<Directions>();
+	// added to create legal moves
+	ArrayList<Location> possibleMoves;
 
 	Castle(Board b) {
 		super(b);
@@ -37,6 +39,26 @@ public class Castle extends Piece {
 
 		return possibleMoves;
 	}
+
+//	public ArrayList<Location> getLegalMoves() {
+//
+//		if (location == null) {
+//			return null;
+//		}
+//		ArrayList<Location> legalMoves = new ArrayList<Location>();
+//		for (Location p : possibleMoves) {
+//			if (p != null) {
+//				if (!p.getHasPiece()) {
+//					legalMoves.add(p);
+//					System.out.println("passed");
+//				} else {
+//					System.out.println("no moves here");
+//				}
+//			}
+//		}
+//
+//		return legalMoves;
+//	}
 
 	@Override
 	protected String getImageFile() {
