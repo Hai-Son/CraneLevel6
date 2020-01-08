@@ -10,7 +10,6 @@ public class Queen extends Piece {
 	String coordinates = "";
 	List<Directions> legalmoves = new ArrayList<>();
 
-
 	public static void main(String[] args) {
 		Queen Test = new Queen(null);
 		Test.getPossibleMoves();
