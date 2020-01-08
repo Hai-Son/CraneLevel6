@@ -85,4 +85,7 @@ public abstract class Piece {
 
 	protected abstract void draw(Graphics2D g2);
 
+	List<Location> getLegalMoves() {
+		return null;
+	}
 }

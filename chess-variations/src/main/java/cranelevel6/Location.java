@@ -38,6 +38,14 @@ public class Location {
 		this.hasPiece = hasPiece;
 	}
 
+	public Piece getPiece() {
+		Board b = getBoard();
+		if (b == null) {
+			return null;
+		}
+		return b.getPiece(this);
+	}
+
 	public Location getLocation(Directions d) {
 		Board board = getBoard();
 		return board.getLocation(this, d);
