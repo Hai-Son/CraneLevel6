@@ -181,8 +181,22 @@ public class Board {
 		}
 	}
 
+	// piece movement
 	public void movePieceTo(Piece piece, Location location) {
+		Piece targetPiece = getPiece(location);
+		if (targetPiece != null) {
+			removePiece(targetPiece);
+		}
 		piece.setLocation(location);
+	}
+
+	private void removePiece(Piece targetPiece) {
+		if (targetPiece == null) {
+			return;
+		}
+		targetPiece.setLocation(null);
+		targetPiece.setCaptured(true);
+		// add points based on piece type
 	}
 
 	public void addPiece(Piece p) {
@@ -201,6 +215,7 @@ public class Board {
 		return pieces;
 	}
 
+	// give location, get piece
 	public Piece getPiece(Location l) {
 		if (l == null) {
 			return null;
@@ -212,6 +227,7 @@ public class Board {
 		for (Piece p : allPieces) {
 			if (p.getLocation() == l) {
 				return p;
+
 			}
 		}
 		return null;

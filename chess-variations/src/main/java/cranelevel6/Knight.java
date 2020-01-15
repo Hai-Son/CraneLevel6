@@ -92,10 +92,10 @@ public class Knight extends Piece {
 
 	class KnightRule extends Rule {
 		boolean isValid(Piece p, Location l) {
+			Piece lPiece = l.getPiece();
 			if (!super.isValid(p, l)) {
 				return false;
 			}
-			Piece lPiece = l.getPiece();
 			if (lPiece == null || lPiece.isWhite() != p.isWhite()) {
 				return true;
 			} else {
