@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bishop extends Piece {
+
+	// START HERE
 	ArrayList<Directions> moves = new ArrayList<Directions>();
 
 	Bishop(Board board) {
@@ -14,6 +16,16 @@ public class Bishop extends Piece {
 		moves.add(Directions.SW);
 		moves.add(Directions.NW);
 	}
+
+//	ArrayList<Directions> moves = new ArrayList<Directions>();
+//
+//	Bishop(Board board) {
+//		super(board);
+//		moves.add(Directions.NE);
+//		moves.add(Directions.SE);
+//		moves.add(Directions.SW);
+//		moves.add(Directions.NW);
+//	}
 
 	@Override
 	protected String getImageFile() {
