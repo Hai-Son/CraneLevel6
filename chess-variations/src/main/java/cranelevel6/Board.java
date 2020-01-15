@@ -40,7 +40,9 @@ public class Board {
 		// white pieces
 		Castle rookWL = new Castle(this);
 		rookWL.setWhite(true);
+		Location l = new Location(0, 0);
 		rookWL.setLocation(this.getTiles()[0][0]);
+		l.setHasPiece(true);
 		rookWL.refreshImage();
 		this.addPiece(rookWL);
 
@@ -96,11 +98,15 @@ public class Board {
 			WhitePawns.add(pawn);
 		}
 		WhitePawns.get(3).setLocation(this.getTiles()[2][2]);
+		WhitePawns.get(7).setLocation(this.getTiles()[4][4]);
+		WhitePawns.get(0).setLocation(this.getTiles()[2][6]);
 
 		// black pieces
 		Castle rookBL = new Castle(this);
+		Location l2 = new Location(0, 7);
 		rookBL.setWhite(false);
 		rookBL.setLocation(this.getTiles()[0][7]);
+		l2.setHasPiece(true);
 		rookBL.refreshImage();
 		this.addPiece(rookBL);
 
