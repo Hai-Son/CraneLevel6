@@ -95,6 +95,7 @@ public class Board {
 			this.addPiece(pawn);
 			WhitePawns.add(pawn);
 		}
+		WhitePawns.get(3).setLocation(this.getTiles()[2][2]);
 
 		// black pieces
 		Castle rookBL = new Castle(this);

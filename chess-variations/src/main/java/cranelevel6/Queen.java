@@ -13,13 +13,6 @@ public class Queen extends Piece {
 	String coordinates = "";
 	// List<Directions> legalmoves = new ArrayList<>();
 
-//CONFLICT BETWEEN LEGAL MOVES AND MOVES 
-
-	public static void main(String[] args) {
-		Queen Test = new Queen(null);
-		Test.getPossibleMoves();
-	}
-
 	Queen(Board board) {
 		super(board);
 		Rule queenRule = new QueenRule();
@@ -47,21 +40,18 @@ public class Queen extends Piece {
 //	}
 
 	public List<Location> getPossibleMoves() {
-
-		// return coordinates;
-		List<Location> moves = new ArrayList<>();
-		Location current = getLocation(); // Gets position of piece.
-		for (Directions d : legalmoves) {
-			Location n = current.getLocation(d); // Location of object
-			// Location s = new Location(n.getxTile(), n.getyTile());
-			System.out.println(n);
-			while (n != null) {
-				moves.add(n);
-				n = n.getLocation(d);
-			}
-
+		if (location == null) {
+			return null;
 		}
-		return moves;
+		ArrayList<Location> possibleMoves = new ArrayList<Location>();
+		for (Directions d : moves.keySet()) {
+			Location l = location.getLocation(d);
+			if (l != null) {
+				possibleMoves.add(l);
+				l = l.getLocation(d);
+			}
+		}
+		return possibleMoves;
 	}
 	// recursively add another item as we go
 	// until null or smth is hit
@@ -95,10 +85,10 @@ public class Queen extends Piece {
 		for (Directions d : moves.keySet()) {
 			Location l = location.getLocation(d);
 			Rule r = moves.get(d);
-			if (l != null) {
-				if (r.isValid(this, l)) {
-					legalMoves.add(l);
-				}
+			while (l != null && r.isValid(this, l)) {
+				legalMoves.add(l);
+				l = l.getLocation(d);
+				System.out.print(l);
 			}
 		}
 		return legalMoves;
