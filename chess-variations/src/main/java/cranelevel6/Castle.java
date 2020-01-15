@@ -4,9 +4,6 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 public class Castle extends Piece {
-	// Location location;
-	int x; // (0,0) or (7,0)for white?
-	int y = 0;
 
 	ArrayList<Directions> moves = new ArrayList<Directions>();
 	// added to create legal moves
