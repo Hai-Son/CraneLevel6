@@ -105,7 +105,7 @@ public class DisplayGame extends JPanel implements MouseListener, ActionListener
 			g2.setColor(selected);
 			g2.drawRect(selectedLocation.getxCord() + 2, selectedLocation.getyCord() + 2, rectLength - 4,
 					rectHeight - 4);
-			showMoves = false;
+			// showMoves = false;
 		}
 	}
 
@@ -134,23 +134,42 @@ public class DisplayGame extends JPanel implements MouseListener, ActionListener
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		Location thisSquare = getLocation(e);
-		if (thisSquare == null) {
-			System.out.println("out of bounds");
-			return;
-		} else {
-			System.out.println(thisSquare.getxTile() + "," + thisSquare.getyTile());
+
+		if (showMoves) {
+			for (Location l : pMoves) {
+				if (thisSquare.equals(l)) {
+					System.out.println("second click");
+					for (Piece p : board.getPieces()) {
+						if (p.getLocation() == selectedLocation) {
+							board.movePieceTo(p, thisSquare);
+						}
+					}
+					showMoves = false;
+				}
+			}
+
+			repaint();
+		} else if (!showMoves) {
+
+			if (thisSquare == null) {
+				System.out.println("out of bounds");
+				return;
+			} else {
+				System.out.println(thisSquare.getxTile() + "," + thisSquare.getyTile());
+			}
+
+			for (Piece p : thisSquare.getBoard().getPieces()) {
+				if (thisSquare == p.getLocation()) {
+					// pMoves = p.getPossibleMoves();
+					pMoves = p.getLegalMoves();
+					selectedLocation = thisSquare;
+					showMoves = true;
+					break;
+				}
+			}
+			repaint();
 		}
 
-		for (Piece p : thisSquare.getBoard().getPieces()) {
-			if (thisSquare == p.getLocation()) {
-				// pMoves = p.getPossibleMoves();
-				pMoves = p.getLegalMoves();
-				selectedLocation = thisSquare;
-				showMoves = true;
-				break;
-			}
-		}
-		repaint();
 	}
 
 	@Override

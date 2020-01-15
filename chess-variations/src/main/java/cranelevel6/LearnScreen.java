@@ -71,7 +71,7 @@ public class LearnScreen {
 
 		basicPlay.setText("<html> General rules: <br>" // was "Pieces in the Game"
 
-				+ "<br>All pieces, with the exceptions of Knights and the Castle and King during castling, can only move over vacant spaces."
+				+ "<br>All pieces, with the exception of Knights and the Castle and King during castling, can only move over vacant spaces."
 				+ "The player who is in control of the white pieces makes the first move. <br>"
 				+ "<br> Chess game endings: <br>" + "Winning: A player wins when they checkmate their opponent's king. "
 				+ "Putting a king in 'check' means that a piece is putting the opponent's king in danger of capture on the next move. "
@@ -107,7 +107,7 @@ public class LearnScreen {
 				+ "<br>King: This is the most important piece in the game and must be protected at all costs. "
 				+ "It may only move in one step in all directions. It also has a special move with the Castle where the two cross and switch positions on the board. "
 				+ "The King moves two spaces in either the left or right direction and the castle on the corresponding side 'jumps' over the King, taking the space that it had passed. "
-				+ "However, this may only be done if either piece has not be moved, the spaces between the pieces are vacant, and the king is not in check.<br>"
+				+ "However, this may only be done if both pieces have not be moved, the spaces between the pieces are vacant, and the king is not in check.<br>"
 				+ "<br>Queen: This piece may move and capture pieces in all directions (vertically, horizontally, diagonally). <br>"
 				+ "<br> Knight: This piece 'hops' over other pieces by moving in an L shape. <br>"
 				+ "It moves three spaces in the vertical or horizontal direction and one in an adjacent direction. <br>"
