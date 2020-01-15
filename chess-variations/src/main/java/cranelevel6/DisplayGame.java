@@ -22,6 +22,7 @@ public class DisplayGame extends JPanel implements MouseListener, ActionListener
 	int rectLength = 100;
 	int rectHeight = 100;
 	JButton back;
+	JButton deselect;
 
 	DisplayGame(Board board, Chess c) {
 		this.board = board;
@@ -34,12 +35,22 @@ public class DisplayGame extends JPanel implements MouseListener, ActionListener
 		back.addActionListener(this);
 		back.setFont(f);
 		back.setText("Back");
-		back.setBackground(Color.CYAN);
+		back.setBackground(new Color(153, 255, 255));
 		back.setOpaque(true);
 		back.setBorderPainted(false);
 		back.setSize(105, 45);
 		back.setLocation(0, 0);
 		this.add(back);
+		deselect = new JButton();
+		deselect.addActionListener(this);
+		deselect.setFont(f);
+		deselect.setText("Deselect");
+		deselect.setBackground(Color.PINK);
+		deselect.setOpaque(true);
+		deselect.setBorderPainted(false);
+		deselect.setSize(150, 45);
+		deselect.setLocation(150, 0);
+		this.add(deselect);
 		repaint();
 	}
 
@@ -204,6 +215,10 @@ public class DisplayGame extends JPanel implements MouseListener, ActionListener
 		if (e.getSource().equals(back)) {
 			c.backPressed();
 			board.backPressed();
+		}
+		if (e.getSource().equals(deselect)) {
+			showMoves = false;
+			repaint();
 		}
 	}
 }
