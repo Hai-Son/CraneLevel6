@@ -88,7 +88,9 @@ public class DisplayGame extends JPanel implements MouseListener, ActionListener
 		List<Piece> pieces = board.getPieces();
 		if (pieces != null) {
 			for (Piece p : pieces) {
-				p.draw(g2);
+				if (!p.isCaptured() || p.getLocation() != null) {
+					p.draw(g2);
+				}
 			}
 		}
 		System.out.println("repainted");
@@ -160,8 +162,8 @@ public class DisplayGame extends JPanel implements MouseListener, ActionListener
 
 			for (Piece p : thisSquare.getBoard().getPieces()) {
 				if (thisSquare == p.getLocation()) {
-					pMoves = p.getPossibleMoves();
-					// pMoves = p.getLegalMoves();
+					// pMoves = p.getPossibleMoves();
+					pMoves = p.getLegalMoves();
 					selectedLocation = thisSquare;
 					showMoves = true;
 					break;
