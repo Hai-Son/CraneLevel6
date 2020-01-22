@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class King extends Piece {
 	int x;
 	int y;
+	String type = "king";
 
 	ArrayList<Directions> moves = new ArrayList<Directions>();
 
@@ -60,4 +61,7 @@ public class King extends Piece {
 		g2.drawImage(getImage(), location.getxCord(), location.getyCord(), 100, 100, null);
 	}
 
+	public String getType() {
+		return type;
+	}
 }

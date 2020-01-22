@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bishop extends Piece {
-
+	String type = "bishop";
 	// START HERE
 	ArrayList<Directions> moves = new ArrayList<Directions>();
 
@@ -62,5 +62,9 @@ public class Bishop extends Piece {
 		}
 
 		return possibleMoves;
+	}
+
+	public String getType() {
+		return type;
 	}
 }

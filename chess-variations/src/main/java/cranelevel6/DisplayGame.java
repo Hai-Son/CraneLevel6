@@ -21,8 +21,12 @@ public class DisplayGame extends JPanel implements MouseListener, ActionListener
 	Location[][] tiles;
 	int rectLength = 100;
 	int rectHeight = 100;
-	JButton back;
+	JButton menu;
 	JButton deselect;
+	JButton whiteScore;
+	JButton blackScore;
+	int whiteScoreValue;
+	int blackScoreValue;
 
 	DisplayGame(Board board, Chess c) {
 		this.board = board;
@@ -31,16 +35,16 @@ public class DisplayGame extends JPanel implements MouseListener, ActionListener
 		this.addMouseListener(this);
 		this.setLayout(null);
 		Font f = new Font("Times New Roman", 30, 30);
-		back = new JButton();
-		back.addActionListener(this);
-		back.setFont(f);
-		back.setText("Back");
-		back.setBackground(new Color(153, 255, 255));
-		back.setOpaque(true);
-		back.setBorderPainted(false);
-		back.setSize(105, 45);
-		back.setLocation(0, 0);
-		this.add(back);
+		menu = new JButton();
+		menu.addActionListener(this);
+		menu.setFont(f);
+		menu.setText("Menu");
+		menu.setBackground(new Color(153, 255, 255));
+		menu.setOpaque(true);
+		menu.setBorderPainted(false);
+		menu.setSize(150, 45);
+		menu.setLocation(0, 0);
+		this.add(menu);
 		deselect = new JButton();
 		deselect.addActionListener(this);
 		deselect.setFont(f);
@@ -49,8 +53,30 @@ public class DisplayGame extends JPanel implements MouseListener, ActionListener
 		deselect.setOpaque(true);
 		deselect.setBorderPainted(false);
 		deselect.setSize(150, 45);
-		deselect.setLocation(150, 0);
+		deselect.setLocation(800, 0);
 		this.add(deselect);
+		whiteScore = new JButton();
+		whiteScore.addActionListener(this);
+		whiteScore.setFont(f);
+		whiteScore.setText("White Score: " + whiteScoreValue);
+		whiteScore.setBackground(Color.WHITE);
+		whiteScore.setOpaque(true);
+		whiteScore.setBorderPainted(false);
+		whiteScore.setSize(250, 45);
+		whiteScore.setLocation(200, 0);
+		this.add(whiteScore);
+		repaint();
+		blackScore = new JButton();
+		blackScore.addActionListener(this);
+		blackScore.setFont(f);
+		blackScore.setForeground(Color.WHITE);
+		blackScore.setText("Black Score: " + blackScoreValue);
+		blackScore.setBackground(Color.BLACK);
+		blackScore.setOpaque(true);
+		blackScore.setBorderPainted(false);
+		blackScore.setSize(250, 45);
+		blackScore.setLocation(500, 0);
+		this.add(blackScore);
 		repaint();
 	}
 
@@ -86,12 +112,6 @@ public class DisplayGame extends JPanel implements MouseListener, ActionListener
 		g2.setFont(new Font("TimesRoman", Font.PLAIN, 25));
 		for (int i = 0; i < nums.length; i++) {
 			g2.drawString(nums[i], 35, tiles[0][i].getyCord() + 55);
-		}
-		for (int i = 0; i < nums.length; i++) {
-			g2.drawString(nums[i], 905, tiles[0][i].getyCord() + 55);
-		}
-		for (int i = 0; i < chars.length; i++) {
-			g2.drawString(chars[i], tiles[i][0].getxCord() + 40, 45);
 		}
 		for (int i = 0; i < chars.length; i++) {
 			g2.drawString(chars[i], tiles[i][0].getxCord() + 40, 915);
@@ -212,13 +232,23 @@ public class DisplayGame extends JPanel implements MouseListener, ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if (e.getSource().equals(back)) {
+		if (e.getSource().equals(menu)) {
 			c.backPressed();
 			board.backPressed();
 		}
 		if (e.getSource().equals(deselect)) {
 			showMoves = false;
 			repaint();
+		}
+	}
+
+	public void updateScore(boolean isWhite, int amount) {
+		if (isWhite) {
+			whiteScoreValue += amount;
+			whiteScore.setText("White Score: " + whiteScoreValue);
+		} else {
+			blackScoreValue += amount;
+			blackScore.setText("Black Score: " + blackScoreValue);
 		}
 	}
 }

@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class Board {
 	private final static int WIDTH = 950;
 	private final static int HEIGHT = 975;
 	private Location[][] tiles;
 	private List<Piece> pieces = new ArrayList<>();
+	Chess c;
 	JFrame frame;
 	DisplayGame dg;
 
@@ -19,6 +21,7 @@ public class Board {
 
 	Board(Chess c) {
 		tiles = new Location[8][8];
+		this.c = c;
 		for (int i = 0; i < tiles.length; i++) {
 			for (int j = 0; j < tiles[i].length; j++) {
 				tiles[i][j] = new Location(i, j);
@@ -97,9 +100,6 @@ public class Board {
 			this.addPiece(pawn);
 			WhitePawns.add(pawn);
 		}
-		WhitePawns.get(3).setLocation(this.getTiles()[2][2]);
-		WhitePawns.get(7).setLocation(this.getTiles()[4][4]);
-		WhitePawns.get(0).setLocation(this.getTiles()[2][6]);
 
 		// black pieces
 		Castle rookBL = new Castle(this);
@@ -202,7 +202,29 @@ public class Board {
 		}
 		targetPiece.setLocation(null);
 		targetPiece.setCaptured(true);
-		// add points based on piece type
+		boolean whitePoints = !targetPiece.isWhite();
+		String pieceType = targetPiece.getType();
+		if (pieceType.equals("pawn")) {
+			dg.updateScore(whitePoints, 1);
+		} else if (pieceType.equals("bishop")) {
+			dg.updateScore(whitePoints, 3);
+		} else if (pieceType.equals("knight")) {
+			dg.updateScore(whitePoints, 3);
+		} else if (pieceType.equals("castle")) {
+			dg.updateScore(whitePoints, 5);
+		} else if (pieceType.equals("queen")) {
+			dg.updateScore(whitePoints, 9);
+		} else {
+			if (whitePoints) {
+				JOptionPane.showMessageDialog(null, "White Wins!");
+				this.backPressed();
+				c.backPressed();
+			} else {
+				JOptionPane.showMessageDialog(null, "Black Wins!");
+				this.backPressed();
+				c.backPressed();
+			}
+		}
 	}
 
 	public void addPiece(Piece p) {
