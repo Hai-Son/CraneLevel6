@@ -95,13 +95,24 @@ public class Queen extends Piece {
 	}
 
 	class QueenRule extends Rule {
+//Start here
+		boolean stop = false;
+
 		boolean isValid(Piece p, Location l) {
+			System.out.println("isValid runs");
 			if (!super.isValid(p, l)) {
 				return false;
 			}
+			// boolean ans = false;
 			Piece lPiece = l.getPiece();
-			if (lPiece == null || lPiece.isWhite() != p.isWhite()) {
+			if (lPiece == null) {
 				return true;
+			}
+
+			if (lPiece.isWhite() != p.isWhite() && stop == false) {
+				stop = true;
+				return true;
+
 			} else {
 				return false;
 			}
