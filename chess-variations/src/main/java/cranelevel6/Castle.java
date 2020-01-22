@@ -10,6 +10,7 @@ public class Castle extends Piece {
 	Map<Directions, Rule> moves = new HashMap<Directions, Rule>();
 	// ArrayList<Directions> moves = new ArrayList<Directions>();
 	// added to create legal moves
+	String type = "castle";
 	ArrayList<Location> possibleMoves;
 
 	Castle(Board board) {
@@ -124,4 +125,7 @@ public class Castle extends Piece {
 
 	}
 
+	public String getType() {
+		return type;
+	}
 }

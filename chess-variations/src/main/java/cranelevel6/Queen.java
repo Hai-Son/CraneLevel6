@@ -10,6 +10,7 @@ public class Queen extends Piece {
 	Map<Directions, Rule> moves = new HashMap<Directions, Rule>();
 	int x = 5;
 	int y = 2;
+	String type = "queen";
 	String coordinates = "";
 	// List<Directions> legalmoves = new ArrayList<>();
 
@@ -119,5 +120,9 @@ public class Queen extends Piece {
 
 		}
 
+	}
+
+	public String getType() {
+		return type;
 	}
 }

@@ -10,6 +10,7 @@ public class Pawn extends Piece {
 	Map<Directions, Rule> moves = new HashMap<Directions, Rule>();
 	int x;
 	int y;
+	String type = "pawn";
 
 	Pawn(Board board) {
 		super(board);
@@ -118,4 +119,7 @@ public class Pawn extends Piece {
 
 	}
 
+	public String getType() {
+		return type;
+	}
 }

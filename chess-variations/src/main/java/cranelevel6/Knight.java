@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class Knight extends Piece {
 	Map<Directions, Rule> moves = new HashMap<Directions, Rule>();
+	String type = "knight";
 
 	Knight(Board board) {
 		super(board);
@@ -104,5 +105,9 @@ public class Knight extends Piece {
 
 		}
 
+	}
+
+	public String getType() {
+		return type;
 	}
 }
