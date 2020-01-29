@@ -103,7 +103,6 @@ public class Queen extends Piece {
 	class QueenRule extends Rule {
 
 		boolean isValid(Piece p, Location l) {
-
 			System.out.println("isValid runs");
 			if (!super.isValid(p, l)) {
 				return false;
