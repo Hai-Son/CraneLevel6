@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Chess implements ActionListener {
@@ -77,6 +78,19 @@ public class Chess implements ActionListener {
 		frame.setVisible(false);
 	}
 
+	public void multiSetup() {
+		String[] options = { "Join", "Host" };
+		int option = JOptionPane.showOptionDialog(null, "Are You Hosting Or Joining A Game", "Multiplayer Connect",
+				JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, null);
+		if (option == 0) {
+			String hostIP = JOptionPane.showInputDialog(""); // ask what opposing ip is
+		} else if (option == 1) {
+			String hostIP = ""; // find ip of computer
+			JOptionPane.showMessageDialog(null, "Your IP Address is " + hostIP, "Multiplayer Connect",
+					JOptionPane.PLAIN_MESSAGE, null);
+		}
+	}
+
 	public static void main(String[] args) {
 		Chess chess = new Chess();
 		chess.intro();
@@ -92,7 +106,7 @@ public class Chess implements ActionListener {
 			setup();
 		}
 		if (e.getSource() == multiplayer) {
-			setup();
+			multiSetup();
 		}
 		if (e.getSource() == help) {
 			learningChess();
