@@ -96,10 +96,13 @@ public class Queen extends Piece {
 	}
 
 	class QueenRule extends Rule {
-//Start here
+
 		boolean stop = false;
+		// int count = 0;
 
 		boolean isValid(Piece p, Location l) {
+			// p.getLocation();
+			// System.out.println("count: " + count);
 			System.out.println("isValid runs");
 			if (!super.isValid(p, l)) {
 				return false;
