@@ -13,7 +13,6 @@ public class Queen extends Piece {
 	int y = 2;
 	String type = "queen";
 	String coordinates = "";
-	// List<Directions> legalmoves = new ArrayList<>();
 
 	Queen(Board board) {
 		super(board);
@@ -55,8 +54,6 @@ public class Queen extends Piece {
 		}
 		return possibleMoves;
 	}
-	// recursively add another item as we go
-	// until null or smth is hit
 
 	@Override
 	protected String getImageFile() {
