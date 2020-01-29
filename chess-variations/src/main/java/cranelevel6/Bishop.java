@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Bishop extends Piece {
+	boolean stop = false;
 	String type = "bishop";
 	// START HERE
 	Map<Directions, Rule> moves = new HashMap<Directions, Rule>();
@@ -80,7 +81,11 @@ public class Bishop extends Piece {
 			while (l != null && r.isValid(this, l)) {
 				legalMoves.add(l);
 				l = l.getLocation(d);
+				if (stop == true) {
+					break;
+				}
 			}
+			stop = false;
 		}
 		return legalMoves;
 	}
@@ -91,16 +96,11 @@ public class Bishop extends Piece {
 
 	class BishopRule extends Rule {
 
-		boolean stop = false;
-
 		boolean isValid(Piece p, Location l) {
-			// p.getLocation();
-			// System.out.println("count: " + count);
 			System.out.println("isValid runs");
 			if (!super.isValid(p, l)) {
 				return false;
 			}
-			// boolean ans = false;
 			Piece lPiece = l.getPiece();
 			if (lPiece == null) {
 				return true;
