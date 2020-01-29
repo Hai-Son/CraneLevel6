@@ -38,11 +38,12 @@ public class Pawn extends Piece {
 //	}
 
 	public ArrayList<Location> getPossibleMoves() {
-
+		System.out.println("getPossMovesRun");
 		if (location == null) {
 			return null;
 		}
 		if (isWhite() == true) {
+			System.out.println("remove");
 			moves.remove(Directions.S);
 			moves.remove(Directions.SS);
 			moves.remove(Directions.SW);
@@ -87,6 +88,7 @@ public class Pawn extends Piece {
 
 	@Override
 	List<Location> getLegalMoves() {
+		System.out.println("getlegalMoves run");
 		if (location == null) {
 			return null;
 		}
@@ -95,10 +97,20 @@ public class Pawn extends Piece {
 			Location l = location.getLocation(d);
 			Rule r = moves.get(d);
 			if (l != null) {
+				System.out.println("null run");
+
 				if (r.isValid(this, l)) {
 					legalMoves.add(l);
 				}
+
 			}
+			if (l.getyTile() != 1 || l.getyTile() != 6) {
+				System.out.println("hasmovedrun");
+//				Iterator i = new Iterator();
+//				i.remove(Directions.NN);
+//				i.remove(Directions.SS);
+			}
+
 		}
 		return legalMoves;
 	}
@@ -110,9 +122,6 @@ public class Pawn extends Piece {
 			}
 			Piece lPiece = l.getPiece();
 			if (lPiece == null || lPiece.isWhite() != p.isWhite()) {
-				return true;
-			}
-			if (lPiece.hasMoved == true) {
 				return true;
 			} else {
 				return false;
