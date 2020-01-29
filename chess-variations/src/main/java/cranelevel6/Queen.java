@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Queen extends Piece {
+	private boolean stop = false;
 	Map<Directions, Rule> moves = new HashMap<Directions, Rule>();
 	int x = 5;
 	int y = 2;
@@ -90,27 +91,28 @@ public class Queen extends Piece {
 				legalMoves.add(l);
 				l = l.getLocation(d);
 				System.out.print(l);
+				if (stop == true) {
+					break;
+				}
 			}
+			stop = false;
 		}
 		return legalMoves;
 	}
 
 	class QueenRule extends Rule {
 
-		boolean stop = false;
-		// int count = 0;
-
 		boolean isValid(Piece p, Location l) {
-			// p.getLocation();
-			// System.out.println("count: " + count);
+
 			System.out.println("isValid runs");
 			if (!super.isValid(p, l)) {
 				return false;
 			}
-			// boolean ans = false;
+
 			Piece lPiece = l.getPiece();
 			if (lPiece == null) {
 				return true;
+
 			}
 
 			if (lPiece.isWhite() != p.isWhite() && stop == false) {
@@ -120,7 +122,6 @@ public class Queen extends Piece {
 			} else {
 				return false;
 			}
-
 		}
 
 	}
