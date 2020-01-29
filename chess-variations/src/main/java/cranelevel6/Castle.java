@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Castle extends Piece {
+	boolean stop = false;
 	Map<Directions, Rule> moves = new HashMap<Directions, Rule>();
 	// ArrayList<Directions> moves = new ArrayList<Directions>();
 	// added to create legal moves
@@ -104,7 +105,11 @@ public class Castle extends Piece {
 				l = l.getLocation(d);
 				System.out.print(l);
 
+				if (stop == true) {
+					break;
+				}
 			}
+			stop = false;
 		}
 		return legalMoves;
 	}
@@ -115,7 +120,12 @@ public class Castle extends Piece {
 				return false;
 			}
 			Piece lPiece = l.getPiece();
+			if (lPiece == null) {
+				return true;
+
+			}
 			if (lPiece == null || lPiece.isWhite() != p.isWhite()) {
+				stop = true;
 				return true;
 			} else {
 				return false;
