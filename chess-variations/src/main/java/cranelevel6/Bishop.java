@@ -90,17 +90,31 @@ public class Bishop extends Piece {
 	}
 
 	class BishopRule extends Rule {
+
+		boolean stop = false;
+
 		boolean isValid(Piece p, Location l) {
+			// p.getLocation();
+			// System.out.println("count: " + count);
+			System.out.println("isValid runs");
 			if (!super.isValid(p, l)) {
 				return false;
 			}
+			// boolean ans = false;
 			Piece lPiece = l.getPiece();
-			if (lPiece == null || lPiece.isWhite() != p.isWhite()) {
+			if (lPiece == null) {
 				return true;
+			}
+
+			if (lPiece.isWhite() != p.isWhite() && stop == false) {
+				stop = true;
+				return true;
+
 			} else {
 				return false;
 			}
 
 		}
+
 	}
 }
