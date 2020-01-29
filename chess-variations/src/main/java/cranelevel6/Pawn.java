@@ -14,15 +14,17 @@ public class Pawn extends Piece {
 
 	Pawn(Board board) {
 		super(board);
-		Rule pawnRule = new PawnRule();
-		moves.put(Directions.N, pawnRule);
-		moves.put(Directions.NN, pawnRule);
-		moves.put(Directions.NE, pawnRule);
-		moves.put(Directions.NW, pawnRule);
-		moves.put(Directions.SS, pawnRule);
-		moves.put(Directions.S, pawnRule);
-		moves.put(Directions.SW, pawnRule);
-		moves.put(Directions.SE, pawnRule);
+		Rule whiteRule = new ColorRule(true);
+		Rule blackRule = new ColorRule(false);
+
+		moves.put(Directions.N, whiteRule);
+		moves.put(Directions.NN, whiteRule);
+		moves.put(Directions.NE, whiteRule);
+		moves.put(Directions.NW, whiteRule);
+		moves.put(Directions.SS, blackRule);
+		moves.put(Directions.S, blackRule);
+		moves.put(Directions.SW, blackRule);
+		moves.put(Directions.SE, blackRule);
 	}
 //	ArrayList<Directions> moves = new ArrayList<Directions>();
 //	Pawn(Board board) {
@@ -114,6 +116,14 @@ public class Pawn extends Piece {
 			} else {
 				return false;
 			}
+
+		}
+
+	}
+
+	class ColorRule extends PieceColorRule {
+		ColorRule(boolean white) {
+			super(white);
 
 		}
 
