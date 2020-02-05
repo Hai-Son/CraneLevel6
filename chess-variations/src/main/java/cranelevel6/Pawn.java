@@ -16,15 +16,19 @@ public class Pawn extends Piece {
 		super(board);
 		Rule whiteRule = new ColorRule(true);
 		Rule blackRule = new ColorRule(false);
+		Rule whiteTakeRule = new TakeRule(true);
+		Rule blackTakeRule = new TakeRule(false);
+		Rule whiteAdvanceRule = new AdvanceRule(true);
+		Rule blackAdvanceRule = new AdvanceRule(false);
 
-		moves.put(Directions.N, whiteRule);
+		moves.put(Directions.N, whiteAdvanceRule);
 		moves.put(Directions.NN, whiteRule);
-		moves.put(Directions.NE, whiteRule);
-		moves.put(Directions.NW, whiteRule);
+		moves.put(Directions.NE, whiteTakeRule);
+		moves.put(Directions.NW, whiteTakeRule);
 		moves.put(Directions.SS, blackRule);
-		moves.put(Directions.S, blackRule);
-		moves.put(Directions.SW, blackRule);
-		moves.put(Directions.SE, blackRule);
+		moves.put(Directions.S, blackAdvanceRule);
+		moves.put(Directions.SW, blackTakeRule);
+		moves.put(Directions.SE, blackTakeRule);
 	}
 //	ArrayList<Directions> moves = new ArrayList<Directions>();
 //	Pawn(Board board) {
@@ -105,16 +109,18 @@ public class Pawn extends Piece {
 		return legalMoves;
 	}
 
-	class PawnRule extends Rule {
+	class TakeRule extends ColorRule {
+		TakeRule(boolean white) {
+			super(white);
+			// TODO Auto-generated constructor stub
+		}
+
 		boolean isValid(Piece p, Location l) {
 			if (!super.isValid(p, l)) {
 				return false;
 			}
 			Piece lPiece = l.getPiece();
-			if (lPiece == null || lPiece.isWhite() != p.isWhite()) {
-				return true;
-			}
-			if (lPiece.hasMoved == true) {
+			if (lPiece != null && lPiece.isWhite() != p.isWhite()) {
 				return true;
 			} else {
 				return false;
@@ -123,6 +129,48 @@ public class Pawn extends Piece {
 		}
 
 	}
+
+	class AdvanceRule extends ColorRule {
+		AdvanceRule(boolean white) {
+			super(white);
+			// TODO Auto-generated constructor stub
+		}
+
+		boolean isValid(Piece p, Location l) {
+			if (!super.isValid(p, l)) {
+				return false;
+			}
+			Piece lPiece = l.getPiece();
+			if (lPiece == null) {
+				return true;
+			} else {
+				return false;
+			}
+
+		}
+
+	}
+
+//	class DoubleAdvanceRule extends AdvanceRule {
+//		DoubleAdvanceRule(boolean white) {
+//			super(white);
+//			// TODO Auto-generated constructor stub
+//		}
+//
+//		boolean isValid(Piece p, Location l) {
+//			if (!super.isValid(p, l)) {
+//				return false;
+//			}
+//			Piece lPiece = l.getPiece();
+//			if (lPiece == null && p.get) {
+//				return true;
+//			} else {
+//				return false;
+//			}
+//
+//		}
+//
+//	}
 
 	class ColorRule extends PieceColorRule {
 		ColorRule(boolean white) {
