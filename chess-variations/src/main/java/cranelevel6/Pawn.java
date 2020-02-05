@@ -43,14 +43,19 @@ public class Pawn extends Piece {
 		System.out.println("getPossMovesRun");
 		if (location == null) {
 			return null;
-		}
-		if (isWhite() == true) {
+		} else if (isWhite() == true) {
 			System.out.println("remove");
+			if (getHasMoved() == true) {
+				moves.remove(Directions.NN);
+			}
 			moves.remove(Directions.S);
 			moves.remove(Directions.SS);
 			moves.remove(Directions.SW);
 			moves.remove(Directions.SE);
 		} else {
+			if (getHasMoved() == true) {
+				moves.remove(Directions.SS);
+			}
 			moves.remove(Directions.N);
 			moves.remove(Directions.NE);
 			moves.remove(Directions.NW);
@@ -106,12 +111,12 @@ public class Pawn extends Piece {
 				}
 
 			}
-			if (l.getyTile() != 1 || l.getyTile() != 6) {
-				System.out.println("hasmovedrun");
-//				Iterator i = new Iterator();
-//				i.remove(Directions.NN);
-//				i.remove(Directions.SS);
-			}
+//			if (l.getyTile() != 1 || l.getyTile() != 6) {
+//				System.out.println("hasmovedrun");
+////				Iterator i = new Iterator();
+////				i.remove(Directions.NN);
+////				i.remove(Directions.SS);
+//			}
 
 		}
 		return legalMoves;
@@ -124,6 +129,10 @@ public class Pawn extends Piece {
 			}
 			Piece lPiece = l.getPiece();
 			if (lPiece == null || lPiece.isWhite() != p.isWhite()) {
+				return true;
+			}
+			if (p.getHasMoved() == true) {
+				getPossibleMoves();
 				return true;
 			} else {
 				return false;
