@@ -12,16 +12,6 @@ public class Pawn extends Piece {
 	int y;
 	String type = "pawn";
 
-	void checkHasMoved(Piece p) {
-		boolean hm;
-		if (p.getLocation().getyTile() != 1) {
-			p.setHasMoved(true);
-		} else {
-			p.setHasMoved(false);
-		}
-
-	}
-
 	class ColorRule extends PieceColorRule {
 		ColorRule(boolean white) {
 			super(white);
@@ -176,7 +166,6 @@ public class Pawn extends Piece {
 				return false;
 			}
 			Piece lPiece = l.getPiece();
-			checkHasMoved(p);
 			if (lPiece == null || lPiece.isWhite() != p.isWhite()) {
 				return true;
 			}

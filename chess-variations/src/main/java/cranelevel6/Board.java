@@ -194,6 +194,7 @@ public class Board {
 			removePiece(targetPiece);
 		}
 		piece.setLocation(location);
+		piece.setHasMoved(true);
 	}
 
 	private void removePiece(Piece targetPiece) {
