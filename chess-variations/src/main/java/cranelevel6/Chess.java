@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -83,11 +84,21 @@ public class Chess implements ActionListener {
 		int option = JOptionPane.showOptionDialog(null, "Are You Hosting Or Joining A Game", "Multiplayer Connect",
 				JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, null);
 		if (option == 0) {
-			String hostIP = JOptionPane.showInputDialog(""); // ask what opposing ip is
+			try {
+				MultiplayerJoin mj = new MultiplayerJoin();
+				mj.run();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else if (option == 1) {
-			String hostIP = ""; // find ip of computer
-			JOptionPane.showMessageDialog(null, "Your IP Address is " + hostIP, "Multiplayer Connect",
-					JOptionPane.PLAIN_MESSAGE, null);
+			try {
+				MultiplayerHost mh = new MultiplayerHost();
+				mh.run();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
