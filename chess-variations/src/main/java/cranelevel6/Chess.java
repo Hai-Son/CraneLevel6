@@ -5,9 +5,11 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Chess implements ActionListener {
@@ -77,6 +79,29 @@ public class Chess implements ActionListener {
 		frame.setVisible(false);
 	}
 
+	public void multiSetup() {
+		String[] options = { "Join", "Host" };
+		int option = JOptionPane.showOptionDialog(null, "Are You Hosting Or Joining A Game", "Multiplayer Connect",
+				JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, null);
+		if (option == 0) {
+			try {
+				MultiplayerJoin mj = new MultiplayerJoin();
+				mj.run();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (option == 1) {
+			try {
+				MultiplayerHost mh = new MultiplayerHost();
+				mh.run();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public static void main(String[] args) {
 		Chess chess = new Chess();
 		chess.intro();
@@ -92,7 +117,7 @@ public class Chess implements ActionListener {
 			setup();
 		}
 		if (e.getSource() == multiplayer) {
-			setup();
+			multiSetup();
 		}
 		if (e.getSource() == help) {
 			learningChess();
