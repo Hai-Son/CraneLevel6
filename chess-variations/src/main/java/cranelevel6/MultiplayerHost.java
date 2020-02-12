@@ -13,8 +13,11 @@ import javax.swing.JOptionPane;
 
 public class MultiplayerHost {
 	ServerSocket socket1;
+	Board board;
+	Chess c;
 
-	public MultiplayerHost() throws IOException {
+	public MultiplayerHost(Chess c) throws IOException {
+		this.c = c;
 		socket1 = new ServerSocket(8585);
 		String hostIP = "";
 		try {
@@ -31,9 +34,12 @@ public class MultiplayerHost {
 		boolean bool = true;
 		while (bool) {
 			try {
-				System.out.println("Waiting for client to connect...");
+				JOptionPane.showMessageDialog(null, "Waiting for opponent to connect...", "Multiplayer Connect",
+						JOptionPane.PLAIN_MESSAGE, null);
 				Socket socket2 = socket1.accept();
-				System.out.println("Client connected to server");
+				JOptionPane.showMessageDialog(null, "Oppenent connected to the game", "Multiplayer Connect",
+						JOptionPane.PLAIN_MESSAGE, null);
+				Board board = new Board(c);
 				DataInputStream streamIn = new DataInputStream(socket2.getInputStream());
 				System.out.println(streamIn.readUTF());
 				DataOutputStream streamOut = new DataOutputStream(socket2.getOutputStream());

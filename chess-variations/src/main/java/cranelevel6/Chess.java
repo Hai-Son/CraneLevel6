@@ -85,7 +85,7 @@ public class Chess implements ActionListener {
 				JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, null);
 		if (option == 0) {
 			try {
-				MultiplayerJoin mj = new MultiplayerJoin();
+				MultiplayerJoin mj = new MultiplayerJoin(this);
 				mj.run();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -93,7 +93,7 @@ public class Chess implements ActionListener {
 			}
 		} else if (option == 1) {
 			try {
-				MultiplayerHost mh = new MultiplayerHost();
+				MultiplayerHost mh = new MultiplayerHost(this);
 				mh.run();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
