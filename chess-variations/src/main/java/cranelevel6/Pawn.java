@@ -129,6 +129,15 @@ public class Pawn extends Piece {
 	@Override
 	List<Location> getLegalMoves() {
 		System.out.println("getlegalMoves run");
+
+		if (location.getPiece().hasMoved == true) {
+			if (location.getPiece().isWhite() == true) {
+				moves.remove(Directions.NN);
+			} else if (location.getPiece().isWhite() == false) {
+				moves.remove(Directions.SS);
+			}
+		}
+
 		if (location == null) {
 			return null;
 		}
