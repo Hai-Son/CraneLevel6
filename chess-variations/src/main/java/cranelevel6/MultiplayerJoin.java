@@ -4,10 +4,12 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 
 import javax.swing.JOptionPane;
 
 public class MultiplayerJoin {
+	Integer port = 8585;
 	String hostIP;
 	Board board;
 	Chess c;
@@ -19,19 +21,39 @@ public class MultiplayerJoin {
 	}
 
 	public void run() {
-		Integer port = 8585;
+		boolean live = true;
+		boolean whiteturn = true;
+		String incomingString = "";
+		String outgoingString = "";
+		Location oldLoc;
+		Location newLoc;
 		try {
 			Socket socket = new Socket(hostIP, port);
 			Board board = new Board(c);
 			JOptionPane.showMessageDialog(null, "You connected to the game", "Multiplayer Connect",
 					JOptionPane.PLAIN_MESSAGE, null);
-			DataOutputStream streamOut = new DataOutputStream(socket.getOutputStream());
-			streamOut.writeUTF("join test");
-			DataInputStream streamIn = new DataInputStream(socket.getInputStream());
-			System.out.println(streamIn.readUTF());
+			while (live) {
+				DataOutputStream streamOut = new DataOutputStream(socket.getOutputStream());
+				DataInputStream streamIn = new DataInputStream(socket.getInputStream());
+				if (whiteturn) {
+					incomingString = streamIn.readUTF();
+					oldLoc = new Location(Integer.parseInt(incomingString.substring(0, 1)),
+							Integer.parseInt(incomingString.substring(1, 2)));
+					newLoc = new Location(Integer.parseInt(incomingString.substring(2, 3)),
+							Integer.parseInt(incomingString.substring(3, 4)));
+					board.getPiece(oldLoc).setLocation(newLoc);
+				} else {
+					// get outgoingMove data from local board
+					streamOut.writeUTF(outgoingString);
+				}
+			}
 			socket.close();
+		} catch (SocketTimeoutException e) {
+			System.out.println("SocketTimeoutException Caught");
+			live = false;
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("IOException Caught");
+			live = false;
 		}
 	}
 }
