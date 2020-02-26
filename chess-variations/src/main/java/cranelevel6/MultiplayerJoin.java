@@ -41,7 +41,7 @@ public class MultiplayerJoin {
 							.parseInt(incomingString.substring(1, 2))];
 					newLoc = board.getTiles()[Integer.parseInt(incomingString.substring(2, 3))][Integer
 							.parseInt(incomingString.substring(3, 4))];
-					board.getPiece(oldLoc).setLocation(newLoc);
+					board.movePieceTo(oldLoc.getPiece(), newLoc);
 				} else {
 					// get outgoingMove data from local board
 					outgoingString = "7172";
