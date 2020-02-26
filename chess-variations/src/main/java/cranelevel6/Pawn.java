@@ -257,27 +257,6 @@ public class Pawn extends Piece {
 
 		}
 
-//	class DoubleAdvanceRule extends AdvanceRule {
-//		DoubleAdvanceRule(boolean white) {
-//			super(white);
-//			// TODO Auto-generated constructor stub
-//		}
-//
-//		boolean isValid(Piece p, Location l) {
-//			if (!super.isValid(p, l)) {
-//				return false;
-//			}
-//			Piece lPiece = l.getPiece();
-//			if (lPiece == null && p.get) {
-//				return true;
-//			} else {
-//				return false;
-//			}
-//
-//		}
-//
-//	}
-
 		public String getType() {
 			return type;
 		}

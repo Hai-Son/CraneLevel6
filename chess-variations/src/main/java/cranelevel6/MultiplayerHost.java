@@ -58,7 +58,7 @@ public class MultiplayerHost {
 							.parseInt(incomingString.substring(1, 2))];
 					newLoc = board.getTiles()[Integer.parseInt(incomingString.substring(2, 3))][Integer
 							.parseInt(incomingString.substring(3, 4))];
-					board.getPiece(oldLoc).setLocation(newLoc);
+					board.movePieceTo(oldLoc.getPiece(), newLoc);
 				}
 				whiteturn = !whiteturn;
 			}
