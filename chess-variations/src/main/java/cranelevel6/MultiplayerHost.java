@@ -12,13 +12,14 @@ import java.net.UnknownHostException;
 import javax.swing.JOptionPane;
 
 public class MultiplayerHost {
+	Integer port = 8585;
 	ServerSocket socket1;
 	Board board;
 	Chess c;
 
 	public MultiplayerHost(Chess c) throws IOException {
 		this.c = c;
-		socket1 = new ServerSocket(8585);
+		socket1 = new ServerSocket(port);
 		String hostIP = "";
 		try {
 			hostIP = InetAddress.getLocalHost().getHostAddress().trim();
@@ -31,29 +32,43 @@ public class MultiplayerHost {
 	}
 
 	public void run() {
-		boolean bool = true;
-		while (bool) {
-			try {
-				JOptionPane.showMessageDialog(null, "Waiting for opponent to connect...", "Multiplayer Connect",
-						JOptionPane.PLAIN_MESSAGE, null);
-				Socket socket2 = socket1.accept();
-				JOptionPane.showMessageDialog(null, "Oppenent connected to the game", "Multiplayer Connect",
-						JOptionPane.PLAIN_MESSAGE, null);
-				Board board = new Board(c);
-				DataInputStream streamIn = new DataInputStream(socket2.getInputStream());
-				System.out.println(streamIn.readUTF());
-				DataOutputStream streamOut = new DataOutputStream(socket2.getOutputStream());
-				streamOut.writeUTF("host test");
-				socket2.close();
-			} catch (SocketTimeoutException e) {
-				System.out.println("SocketTimeoutException Caught");
-				bool = false;
-			} catch (IOException e) {
-				System.out.println("IOException Caught");
-				bool = false;
+		boolean live = true;
+		boolean whiteturn = true;
+		String incomingString = "";
+		String outgoingString = "";
+		Location oldLoc;
+		Location newLoc;
+		try {
+			JOptionPane.showMessageDialog(null, "Waiting for opponent to connect...", "Multiplayer Connect",
+					JOptionPane.PLAIN_MESSAGE, null);
+			Socket socket2 = socket1.accept();
+			Board board = new Board(c);
+			JOptionPane.showMessageDialog(null, "Oppenent connected to the game", "Multiplayer Connect",
+					JOptionPane.PLAIN_MESSAGE, null);
+			DataOutputStream streamOut = new DataOutputStream(socket2.getOutputStream());
+			DataInputStream streamIn = new DataInputStream(socket2.getInputStream());
+			while (live) {
+				if (whiteturn) {
+					// get outgoingMove data from local board
+					outgoingString = "0102";
+					streamOut.writeUTF(outgoingString);
+				} else {
+					incomingString = streamIn.readUTF();
+					oldLoc = board.getTiles()[Integer.parseInt(incomingString.substring(0, 1))][Integer
+							.parseInt(incomingString.substring(1, 2))];
+					newLoc = board.getTiles()[Integer.parseInt(incomingString.substring(2, 3))][Integer
+							.parseInt(incomingString.substring(3, 4))];
+					board.getPiece(oldLoc).setLocation(newLoc);
+				}
+				whiteturn = !whiteturn;
 			}
+			socket2.close();
+		} catch (SocketTimeoutException e) {
+			System.out.println("SocketTimeoutException Caught");
+			live = false;
+		} catch (IOException e) {
+			System.out.println("IOException Caught");
+			live = false;
 		}
-
 	}
-
 }
