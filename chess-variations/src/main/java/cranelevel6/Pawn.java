@@ -162,24 +162,60 @@ public class Pawn extends Piece {
 //				i.remove(Directions.SS);
 //			}
 				// if (l != null) {
+
 				System.out.println("null run");
-				if (d.equals(Directions.NE) || d.equals(Directions.NW)) {
-					if (l.getHasPiece() == false) {
+				if (d.equals(Directions.NN) || d.equals(Directions.SS)) {
+
+					if (l.getPiece() != null) {
+
 						legalMoves.remove(l);
 					} else {
 					}
 
-				}
+					// START HERE
 
-				if (location.getPiece().isWhite() == false) {
-					if (d.equals(Directions.SE) || d.equals(Directions.SW)) {
-						if (l.getHasPiece() == false) {
+					if (d.equals(Directions.NN)) {
+						Location front = new Location(l.getxTile(), (l.getyTile() + 1));
+						System.out.println("front: " + front.getxTile() + ", " + (front.getyTile() + 1));
+						if (front.getPiece() != null) {
+
 							legalMoves.remove(l);
 						} else {
 						}
 					}
+					if (d.equals(Directions.SS)) {
+						// System.out.println("ss true");
+						Location back = new Location(l.getxTile(), (l.getyTile() - 1));
+						System.out.println("back: " + back.getxTile() + ", " + (back.getyTile() - 1));
+						if (back.getPiece() != null) {
+
+							legalMoves.remove(l);
+						} else {
+						}
+					}
+
 				}
-				// }
+				if (location.getPiece().isWhite() == true) {
+					if (d.equals(Directions.NE) || d.equals(Directions.NW)) {
+						if (l.getPiece() != null) {
+
+						} else {
+							legalMoves.remove(l);
+						}
+
+					}
+
+				}
+				if (location.getPiece().isWhite() == false) {
+					if (d.equals(Directions.SE) || d.equals(Directions.SW)) {
+						if (l.getPiece() != null) {
+
+						} else {
+							legalMoves.remove(l);
+						}
+					}
+				}
+
 			}
 		}
 		return legalMoves;
