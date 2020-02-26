@@ -172,23 +172,29 @@ public class Pawn extends Piece {
 					} else {
 					}
 
-					// START HERE
+					/*
+					 * S T A R T
+					 * 
+					 * H E R E !
+					 */
+
+					// test of getPiece() != null is failing
 
 					if (d.equals(Directions.NN)) {
-						Location front = new Location(l.getxTile(), (l.getyTile() + 1));
-						System.out.println("front: " + front.getxTile() + ", " + (front.getyTile() + 1));
+						Location front = new Location(l.getxTile(), (l.getyTile() - 1));
+						// System.out.println("front: " + front.getxTile() + ", " + front.getyTile());
 						if (front.getPiece() != null) {
-
+							System.out.println("front piece: " + front.getPiece());
 							legalMoves.remove(l);
 						} else {
 						}
 					}
 					if (d.equals(Directions.SS)) {
-						// System.out.println("ss true");
-						Location back = new Location(l.getxTile(), (l.getyTile() - 1));
-						System.out.println("back: " + back.getxTile() + ", " + (back.getyTile() - 1));
+						Location back = new Location(l.getxTile(), (l.getyTile() + 1));
+//						System.out.println("back: " + back.getxTile() + ", " + back.getyTile() + "back location: "
+//								+ l.getxTile() + ", " + l.getyTile());
 						if (back.getPiece() != null) {
-
+							System.out.println("back piece: " + back.getPiece());
 							legalMoves.remove(l);
 						} else {
 						}
