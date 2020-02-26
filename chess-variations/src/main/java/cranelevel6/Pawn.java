@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 public class Pawn extends Piece {
+
+	// PAWN doesn't take diagonally yet :((((
+
 	Map<Directions, Rule> moves = new HashMap<Directions, Rule>();
 	int x;
 	int y;
@@ -152,14 +155,32 @@ public class Pawn extends Piece {
 					legalMoves.add(l);
 				}
 
-			}
 //			if (l.getyTile() != 1 || l.getyTile() != 6) {
 //				System.out.println("hasmovedrun");
 //				Iterator i = new Iterator();
 //				i.remove(Directions.NN);
 //				i.remove(Directions.SS);
 //			}
+				// if (l != null) {
+				System.out.println("null run");
+				if (d.equals(Directions.NE) || d.equals(Directions.NW)) {
+					if (l.getHasPiece() == false) {
+						legalMoves.remove(l);
+					} else {
+					}
 
+				}
+
+				if (location.getPiece().isWhite() == false) {
+					if (d.equals(Directions.SE) || d.equals(Directions.SW)) {
+						if (l.getHasPiece() == false) {
+							legalMoves.remove(l);
+						} else {
+						}
+					}
+				}
+				// }
+			}
 		}
 		return legalMoves;
 	}
