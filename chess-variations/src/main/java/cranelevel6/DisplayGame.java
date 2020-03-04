@@ -28,6 +28,8 @@ public class DisplayGame extends JPanel implements MouseListener, ActionListener
 	int whiteScoreValue;
 	int blackScoreValue;
 
+	boolean whiteTurn = true;
+
 	DisplayGame(Board board, Chess c) {
 		this.board = board;
 		this.tiles = board.getTiles();
@@ -167,29 +169,38 @@ public class DisplayGame extends JPanel implements MouseListener, ActionListener
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		Location thisSquare = getLocation(e);
+		if (thisSquare == null) {
+			return;
+		}
 
 		if (showMoves) {
+			// second click
 			for (Location l : pMoves) {
 				if (thisSquare.equals(l)) {
 					System.out.println("second click");
+
 					for (Piece p : board.getPieces()) {
 						if (p.getLocation() == selectedLocation) {
 							board.movePieceTo(p, thisSquare);
 						}
 					}
 					showMoves = false;
+
 				}
 			}
 
 			repaint();
-		} else if (!showMoves) {
 
-			if (thisSquare == null) {
-				System.out.println("out of bounds");
+		} else if (!showMoves) {
+			// first click
+			Piece locPiece = thisSquare.getPiece();
+			if (locPiece == null) {
 				return;
-			} else {
-				System.out.println(thisSquare.getxTile() + "," + thisSquare.getyTile());
 			}
+			if (locPiece.isWhite() != isWhiteTurn()) {
+				return;
+			}
+			System.out.println(thisSquare.getxTile() + "," + thisSquare.getyTile());
 
 			for (Piece p : thisSquare.getBoard().getPieces()) {
 				if (thisSquare == p.getLocation()) {
@@ -203,6 +214,11 @@ public class DisplayGame extends JPanel implements MouseListener, ActionListener
 			repaint();
 		}
 
+	}
+
+	private boolean isWhiteTurn() {
+		// TODO Auto-generated method stub
+		return whiteTurn;
 	}
 
 	@Override
@@ -250,5 +266,9 @@ public class DisplayGame extends JPanel implements MouseListener, ActionListener
 			blackScoreValue += amount;
 			blackScore.setText("Black Score: " + blackScoreValue);
 		}
+	}
+
+	public void toggleTurn() {
+		whiteTurn = !whiteTurn;
 	}
 }

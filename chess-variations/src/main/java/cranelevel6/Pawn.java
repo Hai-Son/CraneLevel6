@@ -7,22 +7,60 @@ import java.util.List;
 import java.util.Map;
 
 public class Pawn extends Piece {
+
+	// PAWN doesn't take diagonally yet :((((
+
 	Map<Directions, Rule> moves = new HashMap<Directions, Rule>();
 	int x;
 	int y;
 	String type = "pawn";
 
+	class ColorRule extends PieceColorRule {
+		ColorRule(boolean white) {
+			super(white);
+
+		}
+
+	}
+
+	class AdvanceRule extends ColorRule {
+		AdvanceRule(boolean white) {
+			super(white);
+			// TODO Auto-generated constructor stub
+		}
+
+		boolean isValid(Piece p, Location l) {
+			if (!super.isValid(p, l)) {
+				return false;
+			}
+			Piece lPiece = l.getPiece();
+			if (lPiece == null) {
+				return true;
+			} else {
+				return false;
+			}
+
+		}
+
+	}
+
 	Pawn(Board board) {
 		super(board);
-		Rule pawnRule = new PawnRule();
-		moves.put(Directions.N, pawnRule);
-		moves.put(Directions.NN, pawnRule);
-		moves.put(Directions.NE, pawnRule);
-		moves.put(Directions.NW, pawnRule);
-		moves.put(Directions.SS, pawnRule);
-		moves.put(Directions.S, pawnRule);
-		moves.put(Directions.SW, pawnRule);
-		moves.put(Directions.SE, pawnRule);
+		Rule whiteRule = new ColorRule(true);
+		Rule blackRule = new ColorRule(false);
+		Rule whiteTakeRule = new TakeRule(true);
+		Rule blackTakeRule = new TakeRule(false);
+		Rule whiteAdvanceRule = new AdvanceRule(true);
+		Rule blackAdvanceRule = new AdvanceRule(false);
+
+		moves.put(Directions.N, whiteAdvanceRule);
+		moves.put(Directions.NN, whiteRule);
+		moves.put(Directions.NE, whiteTakeRule);
+		moves.put(Directions.NW, whiteTakeRule);
+		moves.put(Directions.SS, blackRule);
+		moves.put(Directions.S, blackAdvanceRule);
+		moves.put(Directions.SW, blackTakeRule);
+		moves.put(Directions.SE, blackTakeRule);
 	}
 //	ArrayList<Directions> moves = new ArrayList<Directions>();
 //	Pawn(Board board) {
@@ -38,16 +76,22 @@ public class Pawn extends Piece {
 //	}
 
 	public ArrayList<Location> getPossibleMoves() {
-
+		System.out.println("getPossMovesRun");
 		if (location == null) {
 			return null;
-		}
-		if (isWhite() == true) {
+		} else if (isWhite() == true) {
+			System.out.println("remove");
+			if (getHasMoved() == true) {
+				moves.remove(Directions.NN);
+			}
 			moves.remove(Directions.S);
 			moves.remove(Directions.SS);
 			moves.remove(Directions.SW);
 			moves.remove(Directions.SE);
 		} else {
+			if (getHasMoved() == true) {
+				moves.remove(Directions.SS);
+			}
 			moves.remove(Directions.N);
 			moves.remove(Directions.NE);
 			moves.remove(Directions.NW);
@@ -87,6 +131,16 @@ public class Pawn extends Piece {
 
 	@Override
 	List<Location> getLegalMoves() {
+		System.out.println("getlegalMoves run");
+
+		if (location.getPiece().hasMoved == true) {
+			if (location.getPiece().isWhite() == true) {
+				moves.remove(Directions.NN);
+			} else if (location.getPiece().isWhite() == false) {
+				moves.remove(Directions.SS);
+			}
+		}
+
 		if (location == null) {
 			return null;
 		}
@@ -95,15 +149,90 @@ public class Pawn extends Piece {
 			Location l = location.getLocation(d);
 			Rule r = moves.get(d);
 			if (l != null) {
+				System.out.println("null run");
+
 				if (r.isValid(this, l)) {
 					legalMoves.add(l);
 				}
+
+//			if (l.getyTile() != 1 || l.getyTile() != 6) {
+//				System.out.println("hasmovedrun");
+//				Iterator i = new Iterator();
+//				i.remove(Directions.NN);
+//				i.remove(Directions.SS);
+//			}
+				// if (l != null) {
+
+				System.out.println("null run");
+				if (d.equals(Directions.NN) || d.equals(Directions.SS)) {
+
+					if (l.getPiece() != null) {
+
+						legalMoves.remove(l);
+					} else {
+					}
+
+					/*
+					 * S T A R T
+					 * 
+					 * H E R E !
+					 */
+
+					// test of getPiece() != null is failing
+
+					if (d.equals(Directions.NN)) {
+						Location front = new Location(l.getxTile(), (l.getyTile() - 1));
+						// System.out.println("front: " + front.getxTile() + ", " + front.getyTile());
+						if (front.getPiece() != null) {
+							System.out.println("front piece: " + front.getPiece());
+							legalMoves.remove(l);
+						} else {
+						}
+					}
+					if (d.equals(Directions.SS)) {
+						Location back = new Location(l.getxTile(), (l.getyTile() + 1));
+//						System.out.println("back: " + back.getxTile() + ", " + back.getyTile() + "back location: "
+//								+ l.getxTile() + ", " + l.getyTile());
+						if (back.getPiece() != null) {
+							System.out.println("back piece: " + back.getPiece());
+							legalMoves.remove(l);
+						} else {
+						}
+					}
+
+				}
+				if (location.getPiece().isWhite() == true) {
+					if (d.equals(Directions.NE) || d.equals(Directions.NW)) {
+						if (l.getPiece() != null) {
+
+						} else {
+							legalMoves.remove(l);
+						}
+
+					}
+
+				}
+				if (location.getPiece().isWhite() == false) {
+					if (d.equals(Directions.SE) || d.equals(Directions.SW)) {
+						if (l.getPiece() != null) {
+
+						} else {
+							legalMoves.remove(l);
+						}
+					}
+				}
+
 			}
 		}
 		return legalMoves;
 	}
 
-	class PawnRule extends Rule {
+	class TakeRule extends ColorRule {
+		TakeRule(boolean white) {
+			super(white);
+			// TODO Auto-generated constructor stub
+		}
+
 		boolean isValid(Piece p, Location l) {
 			if (!super.isValid(p, l)) {
 				return false;
@@ -112,17 +241,24 @@ public class Pawn extends Piece {
 			if (lPiece == null || lPiece.isWhite() != p.isWhite()) {
 				return true;
 			}
-			if (lPiece.hasMoved == true) {
-				return true;
+			if (p.getHasMoved() == true) {
+				getPossibleMoves();
+
+				if (lPiece != null && lPiece.isWhite() != p.isWhite()) {
+
+					return true;
+				} else {
+					return false;
+				}
+
 			} else {
 				return false;
 			}
 
 		}
 
-	}
-
-	public String getType() {
-		return type;
+		public String getType() {
+			return type;
+		}
 	}
 }
