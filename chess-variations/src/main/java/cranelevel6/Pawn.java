@@ -129,6 +129,11 @@ public class Pawn extends Piece {
 		g2.drawImage(getImage(), location.getxCord(), location.getyCord(), 100, 100, null);
 	}
 
+	public void promotion(Pawn p) {
+		Location loc = p.getLocation();
+		int YTile = loc.getyTile();
+	}
+
 	@Override
 	List<Location> getLegalMoves() {
 		System.out.println("getlegalMoves run");
@@ -171,14 +176,6 @@ public class Pawn extends Piece {
 						legalMoves.remove(l);
 					} else {
 					}
-
-					/*
-					 * S T A R T
-					 * 
-					 * H E R E !
-					 */
-
-					// test of getPiece() != null is failing
 
 					if (d.equals(Directions.NN)) {
 						Location front = new Location(l.getxTile(), (l.getyTile() - 1));
