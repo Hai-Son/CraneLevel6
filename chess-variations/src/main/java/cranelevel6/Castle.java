@@ -10,7 +10,6 @@ public class Castle extends Piece {
 	boolean stop = false;
 	Map<Directions, Rule> moves = new HashMap<Directions, Rule>();
 	// ArrayList<Directions> moves = new ArrayList<Directions>();
-	// added to create legal moves
 	String type = "castle";
 	ArrayList<Location> possibleMoves;
 
@@ -51,26 +50,6 @@ public class Castle extends Piece {
 		return possibleMoves;
 	}
 
-//	public ArrayList<Location> getLegalMoves() {
-//
-//		if (location == null) {
-//			return null;
-//		}
-//		ArrayList<Location> legalMoves = new ArrayList<Location>();
-//		for (Location p : possibleMoves) {
-//			if (p != null) {
-//				if (!p.getHasPiece()) {
-//					legalMoves.add(p);
-//					System.out.println("passed");
-//				} else {
-//					System.out.println("no moves here");
-//				}
-//			}
-//		}
-//
-//		return legalMoves;
-//	}
-
 	@Override
 	protected String getImageFile() {
 		// TODO Auto-generated method stub
@@ -104,13 +83,13 @@ public class Castle extends Piece {
 				legalMoves.add(l);
 				l = l.getLocation(d);
 				System.out.print(l);
-
 				if (stop == true) {
 					break;
 				}
 			}
 			stop = false;
 		}
+
 		return legalMoves;
 	}
 
