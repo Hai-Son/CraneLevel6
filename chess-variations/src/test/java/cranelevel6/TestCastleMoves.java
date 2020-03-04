@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class TestCastleMoves {
 
 	public static void main(String[] args) {
-		Board b = new Board(new Chess());
+		Board b = new Board(new Chess(), false);
 		Castle c = new Castle(b);
 		c.setLocation(b.getTiles()[5][2]);
 

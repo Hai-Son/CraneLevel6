@@ -182,6 +182,11 @@ public class DisplayGame extends JPanel implements MouseListener, ActionListener
 					for (Piece p : board.getPieces()) {
 						if (p.getLocation() == selectedLocation) {
 							board.movePieceTo(p, thisSquare);
+							if (board.isMultiplayer) {
+								String ts = "" + selectedLocation.getxTile() + selectedLocation.getyTile()
+										+ thisSquare.getxTile() + thisSquare.getyTile();
+								board.setTransfer(ts);
+							}
 						}
 					}
 					showMoves = false;
@@ -204,7 +209,6 @@ public class DisplayGame extends JPanel implements MouseListener, ActionListener
 
 			for (Piece p : thisSquare.getBoard().getPieces()) {
 				if (thisSquare == p.getLocation()) {
-					// pMoves = p.getPossibleMoves();
 					pMoves = p.getLegalMoves();
 					selectedLocation = thisSquare;
 					showMoves = true;

@@ -75,7 +75,7 @@ public class Chess implements ActionListener {
 		// create and place squares
 		// create and place pieces
 		// start game
-		Board board = new Board(c);
+		Board board = new Board(c, false);
 		frame.setVisible(false);
 	}
 

@@ -59,8 +59,7 @@ public class MultiplayerJoin {
 					}
 					board.movePieceTo(oldLoc.getPiece(), newLoc);
 				} else {
-					// get outgoingMove data from local board
-					outgoingString = "7172";
+					outgoingString = board.getTransfer();
 					streamOut.writeUTF(outgoingString);
 				}
 				whiteturn = !whiteturn;

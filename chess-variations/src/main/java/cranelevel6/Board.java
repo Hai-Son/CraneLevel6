@@ -14,12 +14,15 @@ public class Board {
 	Chess c;
 	JFrame frame;
 	DisplayGame dg;
+	boolean isMultiplayer;
+	private String transferString = "";
 
 	public DisplayGame getDg() {
 		return dg;
 	}
 
-	Board(Chess c) {
+	Board(Chess c, boolean isMultiplayer) {
+		this.isMultiplayer = isMultiplayer;
 		tiles = new Location[8][8];
 		this.c = c;
 		for (int i = 0; i < tiles.length; i++) {
@@ -265,5 +268,13 @@ public class Board {
 
 	public void backPressed() {
 		frame.setVisible(false);
+	}
+
+	public String getTransfer() {
+		return transferString;
+	}
+
+	public void setTransfer(String ts) {
+		transferString = ts;
 	}
 }
