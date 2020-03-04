@@ -195,6 +195,7 @@ public class Board {
 		}
 		piece.setLocation(location);
 		piece.setHasMoved(true);
+		dg.toggleTurn();
 	}
 
 	private void removePiece(Piece targetPiece) {

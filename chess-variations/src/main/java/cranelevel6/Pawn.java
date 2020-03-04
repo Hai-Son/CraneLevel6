@@ -162,24 +162,66 @@ public class Pawn extends Piece {
 //				i.remove(Directions.SS);
 //			}
 				// if (l != null) {
+
 				System.out.println("null run");
-				if (d.equals(Directions.NE) || d.equals(Directions.NW)) {
-					if (l.getHasPiece() == false) {
+				if (d.equals(Directions.NN) || d.equals(Directions.SS)) {
+
+					if (l.getPiece() != null) {
+
 						legalMoves.remove(l);
 					} else {
 					}
 
-				}
+					/*
+					 * S T A R T
+					 * 
+					 * H E R E !
+					 */
 
-				if (location.getPiece().isWhite() == false) {
-					if (d.equals(Directions.SE) || d.equals(Directions.SW)) {
-						if (l.getHasPiece() == false) {
+					// test of getPiece() != null is failing
+
+					if (d.equals(Directions.NN)) {
+						Location front = new Location(l.getxTile(), (l.getyTile() - 1));
+						// System.out.println("front: " + front.getxTile() + ", " + front.getyTile());
+						if (front.getPiece() != null) {
+							System.out.println("front piece: " + front.getPiece());
 							legalMoves.remove(l);
 						} else {
 						}
 					}
+					if (d.equals(Directions.SS)) {
+						Location back = new Location(l.getxTile(), (l.getyTile() + 1));
+//						System.out.println("back: " + back.getxTile() + ", " + back.getyTile() + "back location: "
+//								+ l.getxTile() + ", " + l.getyTile());
+						if (back.getPiece() != null) {
+							System.out.println("back piece: " + back.getPiece());
+							legalMoves.remove(l);
+						} else {
+						}
+					}
+
 				}
-				// }
+				if (location.getPiece().isWhite() == true) {
+					if (d.equals(Directions.NE) || d.equals(Directions.NW)) {
+						if (l.getPiece() != null) {
+
+						} else {
+							legalMoves.remove(l);
+						}
+
+					}
+
+				}
+				if (location.getPiece().isWhite() == false) {
+					if (d.equals(Directions.SE) || d.equals(Directions.SW)) {
+						if (l.getPiece() != null) {
+
+						} else {
+							legalMoves.remove(l);
+						}
+					}
+				}
+
 			}
 		}
 		return legalMoves;
@@ -214,27 +256,6 @@ public class Pawn extends Piece {
 			}
 
 		}
-
-//	class DoubleAdvanceRule extends AdvanceRule {
-//		DoubleAdvanceRule(boolean white) {
-//			super(white);
-//			// TODO Auto-generated constructor stub
-//		}
-//
-//		boolean isValid(Piece p, Location l) {
-//			if (!super.isValid(p, l)) {
-//				return false;
-//			}
-//			Piece lPiece = l.getPiece();
-//			if (lPiece == null && p.get) {
-//				return true;
-//			} else {
-//				return false;
-//			}
-//
-//		}
-//
-//	}
 
 		public String getType() {
 			return type;

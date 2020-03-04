@@ -29,7 +29,7 @@ public class MultiplayerJoin {
 		Location newLoc;
 		try {
 			Socket socket = new Socket(hostIP, port);
-			Board board = new Board(c);
+			Board board = new Board(c, true);
 			JOptionPane.showMessageDialog(null, "You connected to the game", "Multiplayer Connect",
 					JOptionPane.PLAIN_MESSAGE, null);
 			DataOutputStream streamOut = new DataOutputStream(socket.getOutputStream());
@@ -37,9 +37,7 @@ public class MultiplayerJoin {
 			Piece p = null;
 			while (live) {
 				if (whiteturn) {
-					System.out.println(incomingString);
 					incomingString = streamIn.readUTF();
-					System.out.println(incomingString);
 					oldLoc = board.getTiles()[Integer.parseInt(incomingString.substring(0, 1))][Integer
 							.parseInt(incomingString.substring(1, 2))];
 					newLoc = board.getTiles()[Integer.parseInt(incomingString.substring(2, 3))][Integer
@@ -59,6 +57,7 @@ public class MultiplayerJoin {
 					if (p != null && newLoc != null) {
 						board.movePieceTo(p, newLoc);
 					}
+					board.movePieceTo(oldLoc.getPiece(), newLoc);
 				} else {
 					// get outgoingMove data from local board
 					outgoingString = "7172";
