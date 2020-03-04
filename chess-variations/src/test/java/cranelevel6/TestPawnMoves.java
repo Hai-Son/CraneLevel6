@@ -5,7 +5,7 @@ import java.util.List;
 public class TestPawnMoves {
 
 	public static void main(String[] args) {
-		Board b = new Board(new Chess());
+		Board b = new Board(new Chess(), false);
 		Pawn p = new Pawn(b);
 		p.setLocation(b.getTiles()[5][1]);
 		b.addPiece(p);

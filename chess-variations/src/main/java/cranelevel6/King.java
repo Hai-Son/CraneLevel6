@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class King extends Piece {
+	boolean potentialCastle = true;
 	String type = "king";
 	Map<Directions, Rule> moves = new HashMap<Directions, Rule>();
 	int x;
@@ -38,6 +39,8 @@ public class King extends Piece {
 		moves.put(Directions.SW, kingRule);
 		moves.put(Directions.SE, kingRule);
 		moves.put(Directions.NW, kingRule);
+		moves.put(Directions.EE, kingRule);
+		moves.put(Directions.WW, kingRule);
 	}
 
 	public ArrayList<Location> getPossibleMoves() {

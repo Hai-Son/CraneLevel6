@@ -13,7 +13,6 @@ public class Pawn extends Piece {
 	Map<Directions, Rule> moves = new HashMap<Directions, Rule>();
 	int x;
 	int y;
-	String type = "pawn";
 
 	class ColorRule extends PieceColorRule {
 		ColorRule(boolean white) {
@@ -46,6 +45,7 @@ public class Pawn extends Piece {
 
 	Pawn(Board board) {
 		super(board);
+		type = "pawn";
 		Rule whiteRule = new ColorRule(true);
 		Rule blackRule = new ColorRule(false);
 		Rule whiteTakeRule = new TakeRule(true);
