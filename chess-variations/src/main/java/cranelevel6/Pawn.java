@@ -8,8 +8,6 @@ import java.util.Map;
 
 public class Pawn extends Piece {
 
-	// PAWN doesn't take diagonally yet :((((
-
 	Map<Directions, Rule> moves = new HashMap<Directions, Rule>();
 	int x;
 	int y;
@@ -129,10 +127,11 @@ public class Pawn extends Piece {
 		g2.drawImage(getImage(), location.getxCord(), location.getyCord(), 100, 100, null);
 	}
 
-	public void promotion(Pawn p) {
+	public void promote(Pawn p, Piece pie) {
 		Location loc = p.getLocation();
-		int YTile = loc.getyTile();
+		pie.setLocation(loc);
 	}
+//START HEREEEEEEEEEE
 
 	@Override
 	List<Location> getLegalMoves() {
@@ -209,6 +208,7 @@ public class Pawn extends Piece {
 					}
 
 				}
+
 				if (location.getPiece().isWhite() == false) {
 					if (d.equals(Directions.SE) || d.equals(Directions.SW)) {
 						if (l.getPiece() != null) {
