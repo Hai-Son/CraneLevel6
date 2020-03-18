@@ -8,7 +8,7 @@ import java.net.SocketTimeoutException;
 
 import javax.swing.JOptionPane;
 
-public class MultiplayerJoin {
+public class MultiplayerJoin extends Thread {
 	Integer port = 8585;
 	String hostIP;
 	Board board;

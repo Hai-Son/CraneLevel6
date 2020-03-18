@@ -86,7 +86,7 @@ public class Chess implements ActionListener {
 		if (option == 0) {
 			try {
 				MultiplayerJoin mj = new MultiplayerJoin(this);
-				mj.run();
+				mj.start();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -94,7 +94,7 @@ public class Chess implements ActionListener {
 		} else if (option == 1) {
 			try {
 				MultiplayerHost mh = new MultiplayerHost(this);
-				mh.run();
+				mh.start();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

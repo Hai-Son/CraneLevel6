@@ -11,7 +11,7 @@ import java.net.UnknownHostException;
 
 import javax.swing.JOptionPane;
 
-public class MultiplayerHost {
+public class MultiplayerHost extends Thread {
 	Integer port = 8585;
 	ServerSocket socket1;
 	Board board;
