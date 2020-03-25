@@ -8,8 +8,6 @@ import java.util.Map;
 
 public class Pawn extends Piece {
 
-	// PAWN doesn't take diagonally yet :((((
-
 	Map<Directions, Rule> moves = new HashMap<Directions, Rule>();
 	int x;
 	int y;
