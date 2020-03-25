@@ -43,6 +43,32 @@ public class Pawn extends Piece {
 
 	}
 
+//this isn't working yet
+	class DoubleAdvanceRule extends AdvanceRule {
+		DoubleAdvanceRule(boolean white) {
+			super(white);
+		}
+
+		boolean isValid(Piece p, Location l) {
+			if (!super.isValid(p, l)) {
+				return false;
+			}
+			Piece lPiece = l.getPiece();
+			if (lPiece == null) {
+				Location nextLoc = lPiece.getTargetLocation(Directions.N);
+				if (nextLoc.getHasPiece() == false) {
+					return true;
+				} else {
+					return false;
+				}
+
+			} else {
+				return false;
+			}
+
+		}
+	}
+
 	Pawn(Board board) {
 		super(board);
 		type = "pawn";
@@ -52,12 +78,14 @@ public class Pawn extends Piece {
 		Rule blackTakeRule = new TakeRule(false);
 		Rule whiteAdvanceRule = new AdvanceRule(true);
 		Rule blackAdvanceRule = new AdvanceRule(false);
+		Rule whiteDoubleAdvanceRule = new DoubleAdvanceRule(true);
+		Rule blackDoubleAdvanceRule = new DoubleAdvanceRule(false);
 
 		moves.put(Directions.N, whiteAdvanceRule);
-		moves.put(Directions.NN, whiteRule);
+		moves.put(Directions.NN, whiteDoubleAdvanceRule);
 		moves.put(Directions.NE, whiteTakeRule);
 		moves.put(Directions.NW, whiteTakeRule);
-		moves.put(Directions.SS, blackRule);
+		moves.put(Directions.SS, blackDoubleAdvanceRule);
 		moves.put(Directions.S, blackAdvanceRule);
 		moves.put(Directions.SW, blackTakeRule);
 		moves.put(Directions.SE, blackTakeRule);
