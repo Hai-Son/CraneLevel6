@@ -239,7 +239,7 @@ public class Pawn extends Piece {
 				return true;
 			}
 			if (p.getHasMoved() == true) {
-				getPossibleMoves();
+				// getPossibleMoves();
 
 				if (lPiece != null && lPiece.isWhite() != p.isWhite()) {
 
